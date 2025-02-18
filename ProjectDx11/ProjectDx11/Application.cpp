@@ -1,5 +1,6 @@
 #include <Windows.h>
 #include "Window.hpp"
+#include "Renderer.hpp"
 
 #include <iostream>
 
@@ -10,6 +11,7 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	AttachConsoleWindow();
 
 	Window window(800, 600);
+	Renderer renderer(window);
 
 	MSG msg = { 0 };
 
@@ -25,8 +27,10 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 				break;
 			}
 		}
-	}
 
+		renderer.beginFrame();
+		renderer.endFrame();
+	}
 
 	return 0;
 }

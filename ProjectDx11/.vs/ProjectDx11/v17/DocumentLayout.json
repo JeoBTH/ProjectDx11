@@ -11,6 +11,14 @@
       "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Window.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Renderer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Renderer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Renderer.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Renderer.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Window.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Window.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
@@ -22,8 +30,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Renderer.cpp",
+              "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Renderer.cpp",
+              "RelativeDocumentMoniker": "ProjectDx11\\Renderer.cpp",
+              "ToolTip": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Renderer.cpp",
+              "RelativeToolTip": "ProjectDx11\\Renderer.cpp",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAwCwAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-02-18T13:40:48.782Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Renderer.hpp",
+              "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Renderer.hpp",
+              "RelativeDocumentMoniker": "ProjectDx11\\Renderer.hpp",
+              "ToolTip": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Renderer.hpp",
+              "RelativeToolTip": "ProjectDx11\\Renderer.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-02-18T13:40:23.52Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -34,11 +68,12 @@
               "RelativeToolTip": "ProjectDx11\\Window.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-18T10:15:47.349Z"
+              "WhenOpened": "2025-02-18T10:15:47.349Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "Window.hpp",
               "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Window.hpp",
               "RelativeDocumentMoniker": "ProjectDx11\\Window.hpp",
@@ -56,7 +91,7 @@
               "RelativeDocumentMoniker": "ProjectDx11\\Application.cpp",
               "ToolTip": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Application.cpp",
               "RelativeToolTip": "ProjectDx11\\Application.cpp",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAACYAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAYAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-02-18T10:13:39.566Z",
               "EditorCaption": ""
