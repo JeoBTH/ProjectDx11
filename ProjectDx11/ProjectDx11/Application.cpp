@@ -3,6 +3,7 @@
 #include "Renderer.hpp"
 #include "Triangle.hpp"
 #include "Camera.hpp"
+#include "Light.hpp"
 
 #include <iostream>
 
@@ -16,6 +17,7 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 	Renderer renderer(window);
 	Triangle triangle(renderer);
 	Camera camera(renderer);
+	Light light(renderer);
 
 	MSG msg = { 0 };
 
@@ -35,6 +37,7 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		renderer.beginFrame();
 		triangle.update(renderer);
 		camera.update(renderer);
+		light.update(renderer);
 		triangle.draw(renderer);
 		renderer.endFrame();
 	}
