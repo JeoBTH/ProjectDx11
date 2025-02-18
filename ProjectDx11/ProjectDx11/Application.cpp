@@ -3,9 +3,9 @@
 Application::Application()
 	: window(800, 600),
 	renderer(window),
-	mesh(renderer),
 	camera(renderer),
-	light(renderer)
+	light(renderer),
+	gameObject(renderer)
 {
 	//AttachConsoleWindow();
 }
@@ -45,10 +45,10 @@ void Application::run()
 		}
 
 		renderer.beginFrame();
-		mesh.update(renderer);
+		gameObject.update(renderer);
+		gameObject.draw(renderer);
 		camera.update(renderer);
 		light.update(renderer);
-		mesh.draw(renderer);
 		renderer.endFrame();
 	}
 }
