@@ -9,17 +9,17 @@ struct Input
 
 cbuffer LightBuffer : register(b1)
 {
-    float4 ambientColor; // Ambient light color                  16
+    float4 ambientColor;                    // Ambient light color                  16
     
-    float4 pointLightPos; // Point light position (world space)   16
-    float4 pointLightColor; // Point light color                    16
-    float pointLightIntensity; //                                      4
-    float pointLightRange; // --------> Not in use yet             4
-    float2 padding; // padding                              8
+    float4 pointLightPos;                   // Point light position (world space)   16
+    float4 pointLightColor;                 // Point light color                    16
+    float pointLightIntensity;              //                                      4
+    float pointLightRange;                  // --------> Not in use yet             4
+    float2 padding;                         // padding                              8
     
-    float4 specularColor; // Specular light color
-    float specularIntensity; // Specular intensity (Ks)
-    float shininess; // Shininess (higher = sharper highlight)
+    float4 specularColor;                   // Specular light color
+    float specularIntensity;                // Specular intensity (Ks)
+    float shininess;                        // Shininess (higher = sharper highlight)
 }
 
 Texture2D texture0 : register(t0); // Bind the texture to slot t0

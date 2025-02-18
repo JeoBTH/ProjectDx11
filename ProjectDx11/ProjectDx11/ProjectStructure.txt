@@ -1,0 +1,90 @@
+﻿Project Structure
+/ DX11Project
+├── / src
+│   ├── / Core
+│   │   ├── Application.h / .cpp        → Main loop and window handling
+│   │   ├── DXRenderer.h / .cpp         → Initializes Direct3D and handles rendering
+│   │   ├── DXShader.h / .cpp           → Encapsulates shader loading and management
+│   │   ├── DXTexture.h / .cpp          → Handles texture loading and binding
+│   │   ├── DXMesh.h / .cpp             → Encapsulates vertex / index buffers
+│   │   ├── Camera.h / .cpp             → Controls view / projection matrices
+│   │   ├── InputHandler.h / .cpp       → Handles keyboard and mouse input
+│   │   ├── Timer.h / .cpp              → Keeps track of frame time
+│   │   ├── Logger.h / .cpp             → Manages logging / debug output
+│   ├── / Game
+│   │   ├── Scene.h / .cpp              → Manages game objects in a scene
+│   │   ├── GameObject.h / .cpp         → Base class for objects in the scene
+│   │   ├── Player.h / .cpp             → Example subclass of GameObject
+│   │   ├── Enemy.h / .cpp              → Example subclass of GameObject
+│   │   ├── Game.h / .cpp               → Main game logic
+│   ├── / Shaders
+│   │   ├── VertexShader.hlsl         → Basic vertex shader
+│   │   ├── PixelShader.hlsl          → Basic pixel shader
+│   ├── Main.cpp                      → Entry point
+├── / assets                           → Textures, models, shaders
+├── / dependencies                     → DX libraries, third - party libraries
+├── / build                            → Compiled binaries
+├── DX11Project.sln                   → Visual Studio solution
+
+
+Key Classes & Responsibilities
+Core System
+	Application
+	Handles the main game loop.
+	Initializes window (via Win32).
+	Calls DXRenderer::Render() each frame.
+	
+	Renderer
+	Manages DirectX 11 device, context, and swap chain.
+	Handles drawing and clearing the screen.
+	
+	Shader
+	Loads and compiles HLSL shaders.
+	Binds shaders to pipeline.
+	
+	Texture
+	Loads textures from file.
+	Manages DirectX 11 texture resources.
+	
+	Mesh
+	Stores vertex/index buffers.
+	Handles geometry rendering.
+	
+	Camera
+	Manages view and projection matrices.
+	Controls movement and perspective.
+	
+	InputHandler
+	Captures keyboard/mouse input.
+	Provides input states (e.g., IsKeyPressed(VK_W)).
+	
+	Timer
+	Measures delta time for frame updates.
+	
+	Logger
+	Logs messages for debugging.
+
+Game System
+	Scene
+	Manages a collection of GameObjects.
+	
+	GameObject
+	Base class for all objects (position, rotation, scale).
+	Has Update() and Render() methods.
+	
+	Player (inherits from GameObject)
+	Contains movement logic.
+	Handles input.
+	
+	Enemy (inherits from GameObject)
+	AI or movement patterns.
+	
+	Game
+	Controls the game state (e.g., loading scenes, updating objects).
+
+
+Expandability
+	Add a resource manager for caching shaders and textures.
+	Implement post-processing shaders.
+	Introduce lighting models (Phong, PBR).
+	Extend to component-based entity system.

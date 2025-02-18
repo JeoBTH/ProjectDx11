@@ -1,24 +1,34 @@
-#include <Windows.h>
-#include "Window.hpp"
-#include "Renderer.hpp"
-#include "Triangle.hpp"
-#include "Camera.hpp"
-#include "Light.hpp"
+#include "Application.hpp"
 
-#include <iostream>
-
-void AttachConsoleWindow();
-
-int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
+Application::Application()
+	: window(800, 600),
+	renderer(window),
+	mesh(renderer),
+	camera(renderer),
+	light(renderer)
 {
 	AttachConsoleWindow();
+}
 
-	Window window(800, 600);
-	Renderer renderer(window);
-	Triangle triangle(renderer);
-	Camera camera(renderer);
-	Light light(renderer);
+Application::~Application()
+{
 
+}
+
+void Application::AttachConsoleWindow()
+{
+	AllocConsole(); // Allocate a new console
+	FILE* newStdout;
+	freopen_s(&newStdout, "CONOUT$", "w", stdout); // Redirect stdout to the console
+	freopen_s(&newStdout, "CONOUT$", "w", stderr); // Redirect stderr to the console
+	freopen_s(&newStdout, "CONIN$", "r", stdin);   // Redirect stdin to the console
+	std::cout.clear();  // Clear the state of standard streams
+	std::cin.clear();
+	std::cerr.clear();
+}
+
+void Application::run()
+{
 	MSG msg = { 0 };
 
 	while (true)
@@ -35,25 +45,11 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		}
 
 		renderer.beginFrame();
-		triangle.update(renderer);
+		mesh.update(renderer);
 		camera.update(renderer);
 		light.update(renderer);
-		triangle.draw(renderer);
+		mesh.draw(renderer);
 		renderer.endFrame();
 	}
-
-	return 0;
 }
 
-
-void AttachConsoleWindow()
-{
-	AllocConsole(); // Allocate a new console
-	FILE* newStdout;
-	freopen_s(&newStdout, "CONOUT$", "w", stdout); // Redirect stdout to the console
-	freopen_s(&newStdout, "CONOUT$", "w", stderr); // Redirect stderr to the console
-	freopen_s(&newStdout, "CONIN$", "r", stdin);   // Redirect stdin to the console
-	std::cout.clear();  // Clear the state of standard streams
-	std::cin.clear();
-	std::cerr.clear();
-}
