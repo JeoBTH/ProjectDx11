@@ -7,7 +7,7 @@ Application::Application()
 	camera(renderer),
 	light(renderer)
 {
-	AttachConsoleWindow();
+	//AttachConsoleWindow();
 }
 
 Application::~Application()
