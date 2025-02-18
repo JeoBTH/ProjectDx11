@@ -5,7 +5,14 @@
       <FullPath>C:\Users\jespe\Documents\GitHub\ProjectDx11\ProjectDx11\x64\Debug\ProjectDx11.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
-  <ContentFiles />
+  <ContentFiles>
+    <ContentFile>
+      <FullPath>C:\Users\jespe\Documents\GitHub\ProjectDx11\ProjectDx11\ProjectDx11\PixelShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
+      <FullPath>C:\Users\jespe\Documents\GitHub\ProjectDx11\ProjectDx11\ProjectDx11\VertexShader.cso</FullPath>
+    </ContentFile>
+  </ContentFiles>
   <SatelliteDlls />
   <NonRecipeFileRefs />
 </Project>

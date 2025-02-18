@@ -1,6 +1,8 @@
 #include <Windows.h>
 #include "Window.hpp"
 #include "Renderer.hpp"
+#include "Triangle.hpp"
+#include "Camera.hpp"
 
 #include <iostream>
 
@@ -12,6 +14,8 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 
 	Window window(800, 600);
 	Renderer renderer(window);
+	Triangle triangle(renderer);
+	Camera camera(renderer);
 
 	MSG msg = { 0 };
 
@@ -29,6 +33,9 @@ int CALLBACK WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLi
 		}
 
 		renderer.beginFrame();
+		triangle.update(renderer);
+		camera.update(renderer);
+		triangle.draw(renderer);
 		renderer.endFrame();
 	}
 
