@@ -46,6 +46,7 @@ void Application::run()
 
 		renderer.beginFrame();
 		game.update(renderer);
+		game.draw(renderer);
 		camera.update(renderer);
 		light.update(renderer);
 		renderer.endFrame();

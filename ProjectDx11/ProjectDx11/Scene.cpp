@@ -19,5 +19,9 @@ void Scene::addObject()
 void Scene::update(Renderer& renderer)
 {
 	gameObject.update(renderer);
+}
+
+void Scene::draw(Renderer& renderer)
+{
 	gameObject.draw(renderer);
 }
