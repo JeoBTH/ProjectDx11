@@ -3,17 +3,23 @@
 Game::Game(Renderer& renderer)
 	:scene(renderer)
 {
+	GameObject* rectangle = new GameObject(renderer);
+	scene.addGameObject(rectangle);
+
+	Light* light = new Light(renderer);
+	scene.addLight(light);
 
 }
 
 Game::~Game()
 {
-
+	scene.clearGameObjects();
+	scene.clearLights();
 }
 
-void Game::addObject()
+void Game::addGameObject(GameObject* gameObject)
 {
-	scene.addObject();
+	scene.addGameObject(gameObject);
 }
 
 void Game::update(Renderer& renderer)

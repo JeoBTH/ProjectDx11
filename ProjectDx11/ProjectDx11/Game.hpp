@@ -11,7 +11,7 @@ public:
 	Game(Renderer& renderer);
 	~Game();
 
-	void addObject();
+	void addGameObject(GameObject* gameObject);
 	void update(Renderer& renderer);
 	void draw(Renderer& renderer);
 
