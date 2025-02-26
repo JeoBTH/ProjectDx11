@@ -31,6 +31,5 @@ public:
 	void beginFrame();
 	void endFrame();
 
-
 };
 

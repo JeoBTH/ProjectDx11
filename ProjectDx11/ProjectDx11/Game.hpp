@@ -1,13 +1,18 @@
 #pragma once
+#include "Renderer.hpp"
+#include "Scene.hpp"
 
 class Game
 {
 private:
+	Scene scene;
 
 public:
-	Game();
+	Game(Renderer& renderer);
 	~Game();
 
-	void update();
+	void addObject();
+	void update(Renderer& renderer);
+
 };
 

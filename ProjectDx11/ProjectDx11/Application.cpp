@@ -5,7 +5,7 @@ Application::Application()
 	renderer(window),
 	camera(renderer),
 	light(renderer),
-	gameObject(renderer)
+	game(renderer)
 {
 	//AttachConsoleWindow();
 }
@@ -45,8 +45,7 @@ void Application::run()
 		}
 
 		renderer.beginFrame();
-		gameObject.update(renderer);
-		gameObject.draw(renderer);
+		game.update(renderer);
 		camera.update(renderer);
 		light.update(renderer);
 		renderer.endFrame();

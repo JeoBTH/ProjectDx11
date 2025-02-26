@@ -5,7 +5,7 @@
 #include "Renderer.hpp"
 #include "Camera.hpp"
 #include "Light.hpp"
-#include "GameObject.hpp"
+#include "Game.hpp"
 
 
 class Application
@@ -15,7 +15,7 @@ private:
 	Renderer renderer;
 	Camera camera;
 	Light light;
-	GameObject gameObject;
+	Game game;
 
 	void AttachConsoleWindow();
 

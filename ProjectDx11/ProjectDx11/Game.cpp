@@ -1,6 +1,7 @@
 #include "Game.hpp"
 
-Game::Game()
+Game::Game(Renderer& renderer)
+	:scene(renderer)
 {
 
 }
@@ -10,7 +11,12 @@ Game::~Game()
 
 }
 
-void Game::update()
+void Game::addObject()
 {
+	scene.addObject();
+}
 
+void Game::update(Renderer& renderer)
+{
+	scene.update(renderer);
 }

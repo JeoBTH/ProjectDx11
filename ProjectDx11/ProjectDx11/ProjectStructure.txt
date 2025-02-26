@@ -3,10 +3,10 @@
 ├── / src
 │   ├── / Core
 │   │   ├── Application.h / .cpp        → Main loop and window handling
-│   │   ├── DXRenderer.h / .cpp         → Initializes Direct3D and handles rendering
-│   │   ├── DXShader.h / .cpp           → Encapsulates shader loading and management
-│   │   ├── DXTexture.h / .cpp          → Handles texture loading and binding
-│   │   ├── DXMesh.h / .cpp             → Encapsulates vertex / index buffers
+│   │   ├── Renderer.h / .cpp         → Initializes Direct3D and handles rendering
+│   │   ├── Shader.h / .cpp           → Encapsulates shader loading and management
+│   │   ├── Texture.h / .cpp          → Handles texture loading and binding
+│   │   ├── Mesh.h / .cpp             → Encapsulates vertex / index buffers
 │   │   ├── Camera.h / .cpp             → Controls view / projection matrices
 │   │   ├── InputHandler.h / .cpp       → Handles keyboard and mouse input
 │   │   ├── Timer.h / .cpp              → Keeps track of frame time
