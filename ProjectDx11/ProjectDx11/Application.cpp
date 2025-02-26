@@ -3,8 +3,6 @@
 Application::Application()
 	: window(800, 600),
 	renderer(window),
-	camera(renderer),
-	light(renderer),
 	game(renderer)
 {
 	//AttachConsoleWindow();
@@ -47,8 +45,6 @@ void Application::run()
 		renderer.beginFrame();
 		game.update(renderer);
 		game.draw(renderer);
-		camera.update(renderer);
-		light.update(renderer);
 		renderer.endFrame();
 	}
 }
