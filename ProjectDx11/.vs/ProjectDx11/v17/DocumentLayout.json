@@ -3,6 +3,50 @@
   "WorkspaceRootPath": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\ProjectStructure.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\ProjectStructure.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Mesh.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Mesh.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Mesh.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Mesh.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\GameObject.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\GameObject.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Renderer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Renderer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Renderer.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Renderer.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Camera.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Camera.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Shader.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Shader.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Shader.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Shader.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\VertexShader.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\VertexShader.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -19,22 +63,6 @@
       "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Scene.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Shader.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Shader.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Mesh.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Mesh.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Renderer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Renderer.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\GameObject.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\GameObject.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\InputHandler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\InputHandler.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -43,20 +71,8 @@
       "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\InputHandler.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Shader.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Shader.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Camera.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Camera.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\ProjectStructure.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\ProjectStructure.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Camera.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Camera.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\GameObject.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -67,24 +83,8 @@
       "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Application.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Application.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Application.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\VertexShader.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\VertexShader.hlsl||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Renderer.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Renderer.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Mesh.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|solutionrelative:ProjectDx11\\Mesh.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{7657F45C-0082-4BAF-896A-1E67E49B4015}|ProjectDx11\\ProjectDx11.vcxproj|C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Light.hpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -122,24 +122,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 15,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "InputHandler.hpp",
-              "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\InputHandler.hpp",
-              "RelativeDocumentMoniker": "ProjectDx11\\InputHandler.hpp",
-              "ToolTip": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\InputHandler.hpp",
-              "RelativeToolTip": "ProjectDx11\\InputHandler.hpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-26T15:22:37.949Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 20,
               "Title": "Application.hpp",
               "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Application.hpp",
               "RelativeDocumentMoniker": "ProjectDx11\\Application.hpp",
@@ -151,7 +138,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 17,
               "Title": "Camera.hpp",
               "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Camera.hpp",
               "RelativeDocumentMoniker": "ProjectDx11\\Camera.hpp",
@@ -159,12 +146,11 @@
               "RelativeToolTip": "ProjectDx11\\Camera.hpp",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAAB8AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-18T14:06:39.062Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T14:06:39.062Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 9,
               "Title": "Main.cpp",
               "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Main.cpp",
               "RelativeDocumentMoniker": "ProjectDx11\\Main.cpp",
@@ -172,11 +158,12 @@
               "RelativeToolTip": "ProjectDx11\\Main.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-18T10:13:39.566Z"
+              "WhenOpened": "2025-02-18T10:13:39.566Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 18,
               "Title": "GameObject.cpp",
               "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\GameObject.cpp",
               "RelativeDocumentMoniker": "ProjectDx11\\GameObject.cpp",
@@ -188,20 +175,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 6,
               "Title": "Camera.cpp",
               "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Camera.cpp",
               "RelativeDocumentMoniker": "ProjectDx11\\Camera.cpp",
               "ToolTip": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Camera.cpp",
               "RelativeToolTip": "ProjectDx11\\Camera.cpp",
-              "ViewState": "AgIAABwAAAAAAAAAAADwvyQAAAAoAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-02-18T14:06:51.151Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "Shader.cpp",
               "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Shader.cpp",
               "RelativeDocumentMoniker": "ProjectDx11\\Shader.cpp",
@@ -214,7 +201,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 0,
               "Title": "ProjectStructure.txt",
               "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\ProjectStructure.txt",
               "RelativeDocumentMoniker": "ProjectDx11\\ProjectStructure.txt",
@@ -227,15 +214,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 2,
               "Title": "Mesh.hpp",
               "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Mesh.hpp",
               "RelativeDocumentMoniker": "ProjectDx11\\Mesh.hpp",
               "ToolTip": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Mesh.hpp",
               "RelativeToolTip": "ProjectDx11\\Mesh.hpp",
-              "ViewState": "AgIAABEAAAAAAAAAAAAjwB4AAAAGAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-18T13:55:11.655Z"
+              "WhenOpened": "2025-02-18T13:55:11.655Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -251,20 +239,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 4,
               "Title": "Renderer.cpp",
               "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Renderer.cpp",
               "RelativeDocumentMoniker": "ProjectDx11\\Renderer.cpp",
               "ToolTip": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Renderer.cpp",
               "RelativeToolTip": "ProjectDx11\\Renderer.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAowDcAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-02-18T13:40:48.782Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 7,
               "Title": "Shader.hpp",
               "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Shader.hpp",
               "RelativeDocumentMoniker": "ProjectDx11\\Shader.hpp",
@@ -277,7 +265,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 13,
               "Title": "Scene.hpp",
               "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Scene.hpp",
               "RelativeDocumentMoniker": "ProjectDx11\\Scene.hpp",
@@ -285,12 +273,11 @@
               "RelativeToolTip": "ProjectDx11\\Scene.hpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-18T15:52:50.473Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T15:52:50.473Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 14,
               "Title": "Scene.cpp",
               "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Scene.cpp",
               "RelativeDocumentMoniker": "ProjectDx11\\Scene.cpp",
@@ -298,38 +285,37 @@
               "RelativeToolTip": "ProjectDx11\\Scene.cpp",
               "ViewState": "AgIAACQAAAAAAAAAAAAAAEMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-18T15:53:40.051Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T15:53:40.051Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
               "Title": "GameObject.hpp",
               "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\GameObject.hpp",
               "RelativeDocumentMoniker": "ProjectDx11\\GameObject.hpp",
               "ToolTip": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\GameObject.hpp",
               "RelativeToolTip": "ProjectDx11\\GameObject.hpp",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-02-18T15:54:13.012Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 11,
               "Title": "Game.cpp",
               "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Game.cpp",
               "RelativeDocumentMoniker": "ProjectDx11\\Game.cpp",
               "ToolTip": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Game.cpp",
               "RelativeToolTip": "ProjectDx11\\Game.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-02-18T15:36:50.054Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 12,
               "Title": "Game.hpp",
               "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Game.hpp",
               "RelativeDocumentMoniker": "ProjectDx11\\Game.hpp",
@@ -337,25 +323,62 @@
               "RelativeToolTip": "ProjectDx11\\Game.hpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-18T15:36:24.971Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T15:36:24.971Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "Mesh.cpp",
               "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Mesh.cpp",
               "RelativeDocumentMoniker": "ProjectDx11\\Mesh.cpp",
               "ToolTip": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Mesh.cpp",
               "RelativeToolTip": "ProjectDx11\\Mesh.cpp",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAAAFUAAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAAE4AAAAAAAAAAAAowEMAAACfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-02-18T13:55:24.946Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
+              "Title": "VertexShader.hlsl",
+              "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\VertexShader.hlsl",
+              "RelativeDocumentMoniker": "ProjectDx11\\VertexShader.hlsl",
+              "ToolTip": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\VertexShader.hlsl",
+              "RelativeToolTip": "ProjectDx11\\VertexShader.hlsl",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-02-18T13:59:33.093Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Renderer.hpp",
+              "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Renderer.hpp",
+              "RelativeDocumentMoniker": "ProjectDx11\\Renderer.hpp",
+              "ToolTip": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Renderer.hpp",
+              "RelativeToolTip": "ProjectDx11\\Renderer.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-02-18T13:40:23.52Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "InputHandler.hpp",
+              "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\InputHandler.hpp",
+              "RelativeDocumentMoniker": "ProjectDx11\\InputHandler.hpp",
+              "ToolTip": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\InputHandler.hpp",
+              "RelativeToolTip": "ProjectDx11\\InputHandler.hpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-02-26T15:22:37.949Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
               "Title": "InputHandler.cpp",
               "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\InputHandler.cpp",
               "RelativeDocumentMoniker": "ProjectDx11\\InputHandler.cpp",
@@ -363,24 +386,11 @@
               "RelativeToolTip": "ProjectDx11\\InputHandler.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-26T15:23:06.681Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-26T15:23:06.681Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "VertexShader.hlsl",
-              "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\VertexShader.hlsl",
-              "RelativeDocumentMoniker": "ProjectDx11\\VertexShader.hlsl",
-              "ToolTip": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\VertexShader.hlsl",
-              "RelativeToolTip": "ProjectDx11\\VertexShader.hlsl",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-02-18T13:59:33.093Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 19,
               "Title": "Application.cpp",
               "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Application.cpp",
               "RelativeDocumentMoniker": "ProjectDx11\\Application.cpp",
@@ -389,18 +399,6 @@
               "ViewState": "AgIAABsAAAAAAAAAAADwvy0AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-02-18T15:09:22.848Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "Renderer.hpp",
-              "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Renderer.hpp",
-              "RelativeDocumentMoniker": "ProjectDx11\\Renderer.hpp",
-              "ToolTip": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\Renderer.hpp",
-              "RelativeToolTip": "ProjectDx11\\Renderer.hpp",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAB8AAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-18T13:40:23.52Z"
             },
             {
               "$type": "Document",

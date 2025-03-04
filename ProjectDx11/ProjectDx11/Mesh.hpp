@@ -1,11 +1,7 @@
 #pragma once
 #include "Renderer.hpp"
-#include <fstream>
-#include <vector>
-#include <DirectXMath.h>
 
 using namespace std;
-namespace DX = DirectX;
 
 class Mesh
 {
@@ -19,13 +15,12 @@ private:
 
 	ID3D11Buffer* m_vertexBuffer = nullptr;
 	ID3D11Buffer* m_indexBuffer = nullptr;
-	ID3D11VertexShader* m_vertexShader = nullptr;
-	ID3D11PixelShader* m_pixelShader = nullptr;
-	ID3D11InputLayout* m_inputLayout = nullptr;
 
 	void createMesh(Renderer& renderer);
-	void createShader(Renderer& renderer);
 	void loadTexture(Renderer& renderer);
+
+	UINT m_stride;
+	UINT m_offset;
 
 public:
 	Mesh(Renderer& renderer);

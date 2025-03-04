@@ -1,6 +1,9 @@
 #pragma once
 #include "Mesh.hpp"
 #include "Renderer.hpp"
+#include <DirectXMath.h>
+
+namespace DX = DirectX;
 
 class GameObject
 {

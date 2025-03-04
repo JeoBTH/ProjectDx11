@@ -39,66 +39,36 @@ void Mesh::createMesh(Renderer& renderer)
 	renderer.getDevice()->CreateBuffer(&indexBufferDesc, &indexBufferData, &m_indexBuffer);
 }
 
-void Mesh::createShader(Renderer& renderer)
-{
-	// Create Shaders
-	ifstream vsFile("VertexShader.cso", ios::binary);
-	ifstream psFile("PixelShader.cso", ios::binary);
-
-	vector<char> vsData = { istreambuf_iterator<char>(vsFile), istreambuf_iterator <char>() };
-	vector<char> psData = { istreambuf_iterator<char>(psFile), istreambuf_iterator <char>() };
-
-	renderer.getDevice()->CreateVertexShader(vsData.data(), vsData.size(), nullptr, &m_vertexShader);
-	renderer.getDevice()->CreatePixelShader(psData.data(), psData.size(), nullptr, &m_pixelShader);
-
-	// Create Input Layouts
-	// You need thís to bridge your data to your vertex shader
-	// D3D11_APPEND_ALIGNED_ELEMENT, offset the necessary bytes based on the previous line. In this case 12 bytes, since the pos consist of three floats
-	D3D11_INPUT_ELEMENT_DESC layout[]{ {"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
-	{"NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0},
-	{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 24, D3D11_INPUT_PER_VERTEX_DATA, 0 } };
-
-	renderer.getDevice()->CreateInputLayout(layout, 3, vsData.data(), vsData.size(), &m_inputLayout);
-}
-
 Mesh::Mesh(Renderer& renderer)
 {
 	createMesh(renderer);
-	createShader(renderer);
-
 	loadTexture(renderer);
+	
+	// stride is the size between each vertex, when im done with that point, how much in memory do i have to go until i reach the next one
+	m_stride = sizeof(Vertex);
+	m_offset = 0;
 }
 
 Mesh::~Mesh()
 {
 	m_vertexBuffer->Release();
-	m_vertexShader->Release();
-	m_pixelShader->Release();
-	m_inputLayout->Release();
-	//?
 	m_indexBuffer->Release();
 
 }
 
 void Mesh::draw(Renderer& renderer)
 {
-	// Bind input assembler
-	renderer.getDeviceContext()->IASetInputLayout(m_inputLayout);
-	renderer.getDeviceContext()->VSSetShader(m_vertexShader, nullptr, 0);
-	renderer.getDeviceContext()->PSSetShader(m_pixelShader, nullptr, 0);
-
 	// Bind our Vertex Buffer 
-	// stride is the size between each vertex, when im done with that point, how much in memory do i have to go until i reach the next one
-	UINT stride = sizeof(Vertex);
-	UINT offset = 0;
-	renderer.getDeviceContext()->IASetVertexBuffers(0, 1, &m_vertexBuffer, &stride, &offset); // why pointers, because you can set two buffers, then you'd have an array of offet[] = [0,0}; which is automatically treated as a pointer when passed through. Single / Due support
+	renderer.getDeviceContext()->IASetVertexBuffers(0, 1, &m_vertexBuffer, &m_stride, &m_offset); // why pointers, because you can set two buffers, then you'd have an array of offet[] = [0,0}; which is automatically treated as a pointer when passed through. Single / Due support
+	
+	// Bind our Index Buffer 
 	renderer.getDeviceContext()->IASetIndexBuffer(m_indexBuffer, DXGI_FORMAT_R32_UINT, 0);
 
+	// Set the primitive topology
 	renderer.getDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST); // The other alternative is D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP, read up on that
 
 	// Draw
-	// 6: The number of indices in my index buffer. 0: Start at the first index in the index buffer. 0: Use the first vertex as base for vertex lookups
-	renderer.getDeviceContext()->DrawIndexed(6, 0, 0);
+	renderer.getDeviceContext()->DrawIndexed(6, 0, 0); // 6: The number of indices in my index buffer.
 }
 
 

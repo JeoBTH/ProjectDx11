@@ -19,6 +19,13 @@ private:
 	void createDevice(Window& window);
 	void createRenderTarget();
 
+	ID3D11VertexShader* m_vertexShader = nullptr;
+	ID3D11PixelShader* m_pixelShader = nullptr;
+	ID3D11InputLayout* m_inputLayout = nullptr;
+	void createShaders();
+
+	void setPipelineState();
+
 public:
 	Renderer(Window& window);
 	~Renderer();

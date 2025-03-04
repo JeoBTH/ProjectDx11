@@ -1,14 +1,21 @@
 #include "Renderer.hpp"
+#include <fstream>
+#include <vector>
 
+using namespace std;
 
 Renderer::Renderer(Window& window)
 {
 	createDevice(window);
 	createRenderTarget();
+	createShaders();
 }
 
 Renderer::~Renderer()
 {
+	m_vertexShader->Release();
+	m_pixelShader->Release();
+	m_inputLayout->Release();
 }
 
 ID3D11Device* Renderer::getDevice()
@@ -45,6 +52,8 @@ void Renderer::beginFrame()
 	float red = (float)(rand() % 255 / 2100.0f); // Random color to see how it updates
 	float clearColor[] = { red, .25f, .25f, 1 }; // RGBA
 	m_deviceContext->ClearRenderTargetView(m_renderTargetView, clearColor);
+
+	setPipelineState(); // Apply shaders & input layout before drawing
 }
 
 void Renderer::endFrame()
@@ -88,3 +97,38 @@ void Renderer::createRenderTarget()
 	backBuffer->Release(); // everytime you get a buffer, it will increase its index count. So you have to release to decrement
 
 }
+
+void Renderer::createShaders()
+{
+	// Create Shaders
+	ifstream vsFile("VertexShader.cso", ios::binary);
+	ifstream psFile("PixelShader.cso", ios::binary);
+
+	vector<char> vsData = { istreambuf_iterator<char>(vsFile), istreambuf_iterator <char>() };
+	vector<char> psData = { istreambuf_iterator<char>(psFile), istreambuf_iterator <char>() };
+
+	getDevice()->CreateVertexShader(vsData.data(), vsData.size(), nullptr, &m_vertexShader);
+	getDevice()->CreatePixelShader(psData.data(), psData.size(), nullptr, &m_pixelShader);
+
+	// Create Input Layouts
+	// You need thís to bridge your data to your vertex shader
+	// D3D11_APPEND_ALIGNED_ELEMENT, offset the necessary bytes based on the previous line. In this case 12 bytes, since the pos consist of three floats
+	D3D11_INPUT_ELEMENT_DESC layout[]
+	{ 
+		{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
+		{"NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0},
+		{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 24, D3D11_INPUT_PER_VERTEX_DATA, 0 }
+	};
+
+	getDevice()->CreateInputLayout(layout, 3, vsData.data(), vsData.size(), &m_inputLayout);
+}
+
+void Renderer::setPipelineState()
+{
+	// Bind input assembler
+	getDeviceContext()->IASetInputLayout(m_inputLayout);
+	getDeviceContext()->VSSetShader(m_vertexShader, nullptr, 0);
+	getDeviceContext()->PSSetShader(m_pixelShader, nullptr, 0);
+}
+
+
