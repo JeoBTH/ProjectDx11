@@ -158,8 +158,7 @@
               "RelativeToolTip": "ProjectDx11\\Main.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-18T10:13:39.566Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T10:13:39.566Z"
             },
             {
               "$type": "Document",
@@ -183,8 +182,7 @@
               "RelativeToolTip": "ProjectDx11\\Camera.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-18T14:06:51.151Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T14:06:51.151Z"
             },
             {
               "$type": "Document",
@@ -196,8 +194,7 @@
               "RelativeToolTip": "ProjectDx11\\Shader.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-18T14:47:51.393Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T14:47:51.393Z"
             },
             {
               "$type": "Document",
@@ -207,7 +204,7 @@
               "RelativeDocumentMoniker": "ProjectDx11\\ProjectStructure.txt",
               "ToolTip": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\ProjectStructure.txt",
               "RelativeToolTip": "ProjectDx11\\ProjectStructure.txt",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
               "WhenOpened": "2025-02-18T14:51:47.879Z",
               "EditorCaption": ""
@@ -222,8 +219,7 @@
               "RelativeToolTip": "ProjectDx11\\Mesh.hpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-18T13:55:11.655Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T13:55:11.655Z"
             },
             {
               "$type": "Document",
@@ -247,8 +243,7 @@
               "RelativeToolTip": "ProjectDx11\\Renderer.cpp",
               "ViewState": "AgIAACEAAAAAAAAAAAAowDcAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-18T13:40:48.782Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T13:40:48.782Z"
             },
             {
               "$type": "Document",
@@ -260,8 +255,7 @@
               "RelativeToolTip": "ProjectDx11\\Shader.hpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-18T14:47:11.441Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T14:47:11.441Z"
             },
             {
               "$type": "Document",
@@ -297,8 +291,7 @@
               "RelativeToolTip": "ProjectDx11\\GameObject.hpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-18T15:54:13.012Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T15:54:13.012Z"
             },
             {
               "$type": "Document",
@@ -310,8 +303,7 @@
               "RelativeToolTip": "ProjectDx11\\Game.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-18T15:36:50.054Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T15:36:50.054Z"
             },
             {
               "$type": "Document",
@@ -335,8 +327,7 @@
               "RelativeToolTip": "ProjectDx11\\Mesh.cpp",
               "ViewState": "AgIAAE4AAAAAAAAAAAAowEMAAACfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-18T13:55:24.946Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T13:55:24.946Z"
             },
             {
               "$type": "Document",
@@ -348,8 +339,7 @@
               "RelativeToolTip": "ProjectDx11\\VertexShader.hlsl",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-02-18T13:59:33.093Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T13:59:33.093Z"
             },
             {
               "$type": "Document",
@@ -361,8 +351,7 @@
               "RelativeToolTip": "ProjectDx11\\Renderer.hpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-18T13:40:23.52Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T13:40:23.52Z"
             },
             {
               "$type": "Document",

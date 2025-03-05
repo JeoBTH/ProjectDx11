@@ -3,10 +3,10 @@
 ├── / src
 │   ├── / Core
 │   │   ├── Application.h / .cpp        → Main loop and window handling
-│   │   ├── Renderer.h / .cpp         → Initializes Direct3D and handles rendering
-│   │   ├── Shader.h / .cpp           → Encapsulates shader loading and management
-│   │   ├── Texture.h / .cpp          → Handles texture loading and binding
-│   │   ├── Mesh.h / .cpp             → Encapsulates vertex / index buffers
+│   │   ├── Renderer.h / .cpp			→ Initializes Direct3D and handles rendering
+│   │   ├── Shader.h / .cpp				→ Encapsulates shader loading and management
+│   │   ├── Texture.h / .cpp			→ Handles texture loading and binding
+│   │   ├── Mesh.h / .cpp			    → Encapsulates vertex / index buffers
 │   │   ├── Camera.h / .cpp             → Controls view / projection matrices
 │   │   ├── InputHandler.h / .cpp       → Handles keyboard and mouse input
 │   │   ├── Timer.h / .cpp              → Keeps track of frame time
@@ -18,13 +18,13 @@
 │   │   ├── Enemy.h / .cpp              → Example subclass of GameObject
 │   │   ├── Game.h / .cpp               → Main game logic
 │   ├── / Shaders
-│   │   ├── VertexShader.hlsl         → Basic vertex shader
-│   │   ├── PixelShader.hlsl          → Basic pixel shader
-│   ├── Main.cpp                      → Entry point
-├── / assets                           → Textures, models, shaders
-├── / dependencies                     → DX libraries, third - party libraries
-├── / build                            → Compiled binaries
-├── DX11Project.sln                   → Visual Studio solution
+│   │   ├── VertexShader.hlsl			→ Basic vertex shader
+│   │   ├── PixelShader.hlsl			→ Basic pixel shader
+│   ├── Main.cpp						→ Entry point
+├── / assets							→ Textures, models, shaders
+├── / dependencies						→ DX libraries, third - party libraries
+├── / build								→ Compiled binaries
+├── DX11Project.sln						→ Visual Studio solution
 
 
 Key Classes & Responsibilities
