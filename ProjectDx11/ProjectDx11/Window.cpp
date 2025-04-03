@@ -33,7 +33,6 @@ LRESULT CALLBACK Window::WinProc(HWND handle, UINT msg, WPARAM wparam, LPARAM lp
 }
 
 Window::Window(int width, int height)
-: inputHandler(inputHandler)
 {
 	// Define window style
 	WNDCLASS wc = { 0 };
@@ -74,4 +73,10 @@ bool Window::processMessages()
 	}
 
 	return true;
+}
+
+void Window::setInputHandler(InputHandler* handler)
+{
+	inputHandler = handler;
+	SetWindowLongPtr(m_handle, GWLP_USERDATA, reinterpret_cast<LONG_PTR>(inputHandler)); // Store it in the window
 }

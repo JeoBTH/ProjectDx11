@@ -49,7 +49,7 @@ void GameObject::scale(float x, float y, float z)
 
 void GameObject::update(Renderer& renderer)
 {
-	rotateAlongY(1.0f);
+	//rotateAlongY(1.0f);
 
 	m_worldMatrix = m_rotationMatrix * m_translationMatrix * m_scalingMatrix;
 

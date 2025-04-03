@@ -18,7 +18,7 @@ private:
 	InputHandler* inputHandler = nullptr; // Pointer to InputHandler
 
 public:
-	Scene(Renderer& renderer, float cameraMovementSpeed = 1);
+	Scene(Renderer& renderer, float cameraMovementSpeed = 0.1f);
 	~Scene();
 
 	void addGameObject(GameObject* gameObject);

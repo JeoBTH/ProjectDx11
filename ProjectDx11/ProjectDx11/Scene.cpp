@@ -4,12 +4,10 @@ Scene::Scene(Renderer& renderer, float cameraMovementSpeed)
 	:m_camera(renderer),
     moveSpeed(cameraMovementSpeed)
 {
-
 }
 
 Scene::~Scene()
 {
-
 }
 
 void Scene::addGameObject(GameObject* gameObject)
@@ -57,11 +55,14 @@ void Scene::update(Renderer& renderer)
 		light->update(renderer);
 	}
 
+
     // Camera movement with WASD
-    //if (inputHandler->IsKeyPressed('W')) { m_camera.move(0, 0, moveSpeed); }
-    //if (inputHandler->IsKeyPressed('S')) { m_camera.move(0, 0, -moveSpeed); }
-    //if (inputHandler->IsKeyPressed('A')) { m_camera.move(-moveSpeed, 0, 0); }
-    //if (inputHandler->IsKeyPressed('D')) { m_camera.move(moveSpeed, 0, 0); }
+    if (inputHandler->IsKeyDown('W')){ m_camera.move(0, 0, moveSpeed); }
+    if (inputHandler->IsKeyDown('S')) { m_camera.move(0, 0, -moveSpeed); }
+    if (inputHandler->IsKeyDown('A')) { m_camera.move(-moveSpeed, 0, 0); }
+    if (inputHandler->IsKeyDown('D')) { m_camera.move(moveSpeed, 0, 0); }
+
+	inputHandler->update();
 
     m_camera.update(renderer);
 

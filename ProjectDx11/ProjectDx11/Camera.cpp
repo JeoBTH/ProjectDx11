@@ -58,6 +58,8 @@ void Camera::update(Renderer& renderer)
 	DX::XMVECTOR pos = XMLoadFloat3(&m_position);
 	m_tb.cameraPosition = pos;
 
+	initializeViewMatrix();
+
 	m_viewProjectionMatrix = m_viewMatrix * m_projectionMatrix;
 	m_tb.viewProjectionMatrix = DX::XMMatrixTranspose(m_viewProjectionMatrix);
 

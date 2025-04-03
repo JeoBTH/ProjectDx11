@@ -18,7 +18,8 @@ public:
 	bool processMessages();
 
 	InputHandler* getInputHandler() const { return inputHandler; } // Add this getter
-	void setInputHandler(InputHandler* handler) { inputHandler = handler; }
+	void setInputHandler(InputHandler* handler);
+
 
 	static LRESULT CALLBACK WinProc(HWND handle, UINT msg, WPARAM wparam, LPARAM lparam);
 

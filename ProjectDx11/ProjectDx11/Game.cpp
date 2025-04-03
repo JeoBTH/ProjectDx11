@@ -3,7 +3,7 @@
 Game::Game(Renderer& renderer, Window& window)
 	:scene(renderer),
 	window(window),
-    inputHandler()
+    inputHandler("Jesper")
 {
     window.setInputHandler(&inputHandler); // Pass input handler to window
     scene.setInputHandler(&inputHandler); // Pass input handler to scene
