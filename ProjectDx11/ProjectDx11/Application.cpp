@@ -1,9 +1,10 @@
 #include "Application.hpp"
+#include "Window.hpp"
 
 Application::Application()
 	: window(800, 600),
 	renderer(window),
-	game(renderer)
+	game(renderer, window)
 {
 	//AttachConsoleWindow();
 }
@@ -27,21 +28,10 @@ void Application::AttachConsoleWindow()
 
 void Application::run()
 {
-	MSG msg = { 0 };
 
-	while (true)
+	MSG msg = {};
+	while (window.processMessages())  // Keep processing messages
 	{
-		if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
-		{
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-
-			if (msg.message == WM_QUIT)
-			{
-				break;
-			}
-		}
-
 		renderer.beginFrame();
 		game.update(renderer);
 		game.draw(renderer);

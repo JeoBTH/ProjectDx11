@@ -88,3 +88,14 @@ Expandability
 	Implement post-processing shaders.
 	Introduce lighting models (Phong, PBR).
 	Extend to component-based entity system.
+
+
+
+
+❌ Cons of Using GetAsyncKeyState() // Why I'm sticking with InputHandler
+✖ No key state tracking—doesn't distinguish between key press, hold, or release like an InputHandler.
+✖ Not compatible with buffered input—you can't track when a key was first pressed vs. being held.
+✖ Platform-dependent—locks you into Windows (not cross-platform).
+✖ Can be inconsistent—it checks the key state at the exact moment it's called, which might miss quick presses.
+
+

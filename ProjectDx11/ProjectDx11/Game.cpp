@@ -1,8 +1,13 @@
 #include "Game.hpp"
 
-Game::Game(Renderer& renderer)
-	:scene(renderer)
+Game::Game(Renderer& renderer, Window& window)
+	:scene(renderer),
+	window(window),
+    inputHandler()
 {
+    window.setInputHandler(&inputHandler); // Pass input handler to window
+    scene.setInputHandler(&inputHandler); // Pass input handler to scene
+
 	GameObject* rectangle = new GameObject(renderer);
 	scene.addGameObject(rectangle);
 
@@ -25,6 +30,8 @@ void Game::addGameObject(GameObject* gameObject)
 void Game::update(Renderer& renderer)
 {
 	scene.update(renderer);
+	
+
 }
 
 void Game::draw(Renderer& renderer)

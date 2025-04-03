@@ -10,13 +10,15 @@ using namespace std;
 class Scene
 {
 private:
-
 	vector<GameObject*> m_gameObjects;
 	vector<Light*> m_lights;
 	Camera m_camera;
+	float moveSpeed; // Camera movement speed
+
+	InputHandler* inputHandler = nullptr; // Pointer to InputHandler
 
 public:
-	Scene(Renderer& renderer);
+	Scene(Renderer& renderer, float cameraMovementSpeed = 1);
 	~Scene();
 
 	void addGameObject(GameObject* gameObject);
@@ -24,6 +26,8 @@ public:
 
 	void addLight(Light* light);
 	void clearLights();
+
+	void setInputHandler(InputHandler* handler) { inputHandler = handler; } // Setter for input
 
 	Camera& getCamera();
 

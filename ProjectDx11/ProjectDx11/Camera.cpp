@@ -2,7 +2,9 @@
 
 Camera::Camera(Renderer& renderer)
 {
-	m_cameraPosition = DX::XMVectorSet(0.0f, 0.0f, -6.0f, 1.0f);
+	m_position = DirectX::XMFLOAT3(0.0f, 0.0f, -6.0f);  // Camera position
+	m_forward = DirectX::XMFLOAT3(0.0f, 0.0f, 1.0f);    // Forward direction (looking at positive Z)
+	m_up = DirectX::XMFLOAT3(0.0f, 1.0f, 0.0f);         // Up direction
 	m_viewProjectionMatrix = DX::XMMatrixIdentity();
 	initializeViewMatrix();
 	initializeProjectionMatrix(renderer);
@@ -12,6 +14,23 @@ Camera::Camera(Renderer& renderer)
 Camera::~Camera()
 {
 	m_constantBuffer->Release();
+}
+
+void Camera::move(float dx, float dy, float dz)
+{
+	m_position.x += dx;
+	m_position.y += dy;
+	m_position.z += dz;
+}
+
+void Camera::setPosition(float x, float y, float z)
+{
+	m_position = { x, y, z };
+}
+
+DX::XMFLOAT3 Camera::getPosition() const
+{
+	return m_position;
 }
 
 void Camera::initializeProjectionMatrix(Renderer& renderer)
@@ -26,15 +45,18 @@ void Camera::initializeProjectionMatrix(Renderer& renderer)
 
 void Camera::initializeViewMatrix()
 {
-	DX::XMVECTOR targetPosition = DX::XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f);   // Target to look at
-	DX::XMVECTOR upDirection = DX::XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);      // "Up" direction
+	// Load the XMFLOAT3 positions into XMVECTOR
+	DX::XMVECTOR pos = XMLoadFloat3(&m_position);
+	DX::XMVECTOR forward = XMLoadFloat3(&m_forward);
+	DX::XMVECTOR up = XMLoadFloat3(&m_up);
 
-	m_viewMatrix = DirectX::XMMatrixLookAtLH(m_cameraPosition, targetPosition, upDirection);
+	m_viewMatrix = DX::XMMatrixLookAtLH(pos, forward, up);
 }
 
 void Camera::update(Renderer& renderer)
 {
-	m_tb.cameraPosition = m_cameraPosition;
+	DX::XMVECTOR pos = XMLoadFloat3(&m_position);
+	m_tb.cameraPosition = pos;
 
 	m_viewProjectionMatrix = m_viewMatrix * m_projectionMatrix;
 	m_tb.viewProjectionMatrix = DX::XMMatrixTranspose(m_viewProjectionMatrix);

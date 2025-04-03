@@ -1,9 +1,30 @@
 #include "Window.hpp"
 
-LRESULT CALLBACK WinProc(HWND handle, UINT msg, WPARAM wparam, LPARAM lparam)
+LRESULT CALLBACK Window::WinProc(HWND handle, UINT msg, WPARAM wparam, LPARAM lparam)
 {
-	if (msg == WM_DESTROY || msg == WM_CLOSE)
+	InputHandler* inputHandler = reinterpret_cast<InputHandler*>(GetWindowLongPtr(handle, GWLP_USERDATA));
+
+	switch (msg)
 	{
+	case WM_KEYDOWN:
+		inputHandler->SetKeyState(static_cast<unsigned char>(wparam), true);
+		break;
+	case WM_KEYUP:
+		inputHandler->SetKeyState(static_cast<unsigned char>(wparam), false);
+		break;
+	case WM_LBUTTONDOWN:
+		inputHandler->SetMouseButtonState(VK_LBUTTON, true);
+		break;
+	case WM_LBUTTONUP:
+		inputHandler->SetMouseButtonState(VK_LBUTTON, false);
+		break;
+	case WM_RBUTTONDOWN:
+		inputHandler->SetMouseButtonState(VK_RBUTTON, true);
+		break;
+	case WM_RBUTTONUP:
+		inputHandler->SetMouseButtonState(VK_RBUTTON, false);
+		break;
+	case WM_CLOSE:
 		PostQuitMessage(0);
 		return 0;
 	}
@@ -12,6 +33,7 @@ LRESULT CALLBACK WinProc(HWND handle, UINT msg, WPARAM wparam, LPARAM lparam)
 }
 
 Window::Window(int width, int height)
+: inputHandler(inputHandler)
 {
 	// Define window style
 	WNDCLASS wc = { 0 };
@@ -33,4 +55,23 @@ Window::~Window()
 HWND Window::getHandle()
 {
 	return m_handle;
+}
+
+bool Window::processMessages()
+{
+	MSG msg = { 0 };
+
+
+	while (PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
+	{
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+
+		if (msg.message == WM_QUIT)
+		{
+			return false;
+		}
+	}
+
+	return true;
 }
