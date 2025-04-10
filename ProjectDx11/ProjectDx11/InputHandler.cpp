@@ -3,23 +3,18 @@
 InputHandler::InputHandler(string name)
 {
     this->name = name;
-    // Initialize common keys, like WASD, to false (not pressed)
-    currentKeyState['W'] = false;
-    currentKeyState['A'] = false;
-    currentKeyState['S'] = false;
-    currentKeyState['D'] = false;
 
-    // Initialize previous state in the same way if needed
-    previousKeyState['W'] = false;
-    previousKeyState['A'] = false;
-    previousKeyState['S'] = false;
-    previousKeyState['D'] = false;
+    for (int i = 0; i < KEY_COUNT; ++i)
+    {
+        currentKeyState[i] = false;
+        previousKeyState[i] = false;
+    }
 
-    // Initialize mouse state
-    currentMouseState[VK_LBUTTON] = false;
-    currentMouseState[VK_RBUTTON] = false;
-    previousMouseState[VK_LBUTTON] = false;
-    previousMouseState[VK_RBUTTON] = false;
+    for (int i = 0; i < MOUSE_BUTTON_COUNT; ++i)
+    {
+        currentMouseState[i] = false;
+        previousMouseState[i] = false;
+    }
 }
 
 InputHandler::~InputHandler()
@@ -29,67 +24,51 @@ InputHandler::~InputHandler()
 
 void InputHandler::update()
 {
-    previousKeyState = currentKeyState;
-    previousMouseState = currentMouseState;
+    for (int i = 0; i < KEY_COUNT; ++i)
+    {
+        previousKeyState[i] = currentKeyState[i];
+    }
+
+    for (int i = 0; i < MOUSE_BUTTON_COUNT; ++i)
+    {
+        previousMouseState[i] = currentMouseState[i];
+    }
+
+    updateMouseDelta();
 }
 
 bool InputHandler::IsKeyPressed(unsigned char key) const
 {
-    auto currentIt = currentKeyState.find(key);
-    auto previousIt = previousKeyState.find(key);
-
-    if (currentIt == currentKeyState.end() || previousIt == previousKeyState.end()) 
-    {
-        return false; // Return false if the key is not found (it's not initialized)
-    }
-
-    return currentIt->second && !previousIt->second;
+    return currentKeyState[key] && !previousKeyState[key];
 }
 
 bool InputHandler::IsKeyReleased(unsigned char key) const
 {
-    auto currentIt = currentKeyState.find(key);
-    auto previousIt = previousKeyState.find(key);
-
-    if (currentIt == currentKeyState.end() || previousIt == previousKeyState.end()) {
-        return false; // Return false if the key is not found (it's not initialized)
-    }
-
-    return !currentIt->second && previousIt->second;
+    return !currentKeyState[key] && previousKeyState[key];
 }
 
 bool InputHandler::IsKeyDown(unsigned char key) const
 {
-    auto currentIt = currentKeyState.find(key);
-
-    if (currentIt == currentKeyState.end()) {
-        return false; // Return false if the key is not found (it's not initialized)
-    }
-
-    return currentIt->second;
+    return currentKeyState[key];
 }
 
 bool InputHandler::IsMouseButtonPressed(int button) const
 {
-    return currentMouseState.at(button) && !previousMouseState.at(button);
+    return currentMouseState[button] && !previousMouseState[button];
 }
 
 bool InputHandler::IsMouseButtonReleased(int button) const
 {
-    return !currentMouseState.at(button) && previousMouseState.at(button);
+    return !currentMouseState[button] && previousMouseState[button];
 }
 
 bool InputHandler::IsMouseButtonDown(int button) const
 {
-    return currentMouseState.at(button);
+    return currentMouseState[button];
 }
 
 void InputHandler::SetKeyState(unsigned char key, bool isPressed)
 {
-    if (currentKeyState.find(key) == currentKeyState.end()) 
-    {
-        currentKeyState[key] = false; // Initialize key to false if not found
-    }
     currentKeyState[key] = isPressed;
 }
 

@@ -9,11 +9,13 @@ using namespace std;
 class InputHandler
 {
 private:
-    std::unordered_map<unsigned char, bool> currentKeyState;
-    std::unordered_map<unsigned char, bool> previousKeyState;
+    static const int KEY_COUNT = 256; // static const - a single constant value, shared across all instances of the class. It does not occupy memory per instance. Used to define the array size.
+    bool currentKeyState[KEY_COUNT];
+    bool previousKeyState[KEY_COUNT];
 
-    std::unordered_map<int, bool> currentMouseState;
-    std::unordered_map<int, bool> previousMouseState;
+    static const int MOUSE_BUTTON_COUNT = 5;
+    bool currentMouseState[MOUSE_BUTTON_COUNT];
+    bool previousMouseState[MOUSE_BUTTON_COUNT];
 
     POINT lastMousePos = { 0, 0 };
     float deltaX = 0.0f;

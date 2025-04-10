@@ -26,7 +26,7 @@ private:
 	DX::XMVECTOR m_position; // Camera position (x, y, z)
 	DX::XMVECTOR m_forward;  // Forward direction
 	DX::XMVECTOR m_up;       // Up direction
-	DX::XMVECTOR m_right;
+	DX::XMVECTOR m_right;	// For aligning movement to local space
 
 
 	float pitch = 0.0f;

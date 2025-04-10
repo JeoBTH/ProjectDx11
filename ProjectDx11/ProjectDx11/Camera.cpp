@@ -124,8 +124,8 @@ void Camera::processMouseMovement(float deltaX, float deltaY, bool constrainPitc
 		cosf(pitch) * sinf(yaw),   // x
 		sinf(pitch),               // y
 		cosf(pitch) * cosf(yaw),   // z
-		0.0f                       // w (direction vector)
+		0.0f                       // w
 	);
-	m_forward = DX::XMVector3Normalize(newForward); // Normalize to keep it unit-length
+	m_forward = DX::XMVector3Normalize(newForward); // Normalize
 }
 
