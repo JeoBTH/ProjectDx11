@@ -1,10 +1,13 @@
 #include "Camera.hpp"
+#include <iostream>
+
+using namespace std;
 
 Camera::Camera(Renderer& renderer)
 {
-	m_position = DirectX::XMFLOAT3(0.0f, 0.0f, -6.0f);  // Camera position
-	m_forward = DirectX::XMFLOAT3(0.0f, 0.0f, 1.0f);    // Forward direction (looking at positive Z)
-	m_up = DirectX::XMFLOAT3(0.0f, 1.0f, 0.0f);         // Up direction
+	m_position = DX::XMFLOAT3(0.0f, 0.0f, -6.0f);  // Camera position
+	m_forward = DX::XMFLOAT3(0.0f, 0.0f, 1.0f);    // Forward direction (looking at positive Z)
+	m_up = DX::XMFLOAT3(0.0f, 1.0f, 0.0f);         // Up direction
 	m_viewProjectionMatrix = DX::XMMatrixIdentity();
 	initializeViewMatrix();
 	initializeProjectionMatrix(renderer);
@@ -50,15 +53,19 @@ void Camera::initializeViewMatrix()
 	DX::XMVECTOR forward = XMLoadFloat3(&m_forward);
 	DX::XMVECTOR up = XMLoadFloat3(&m_up);
 
-	m_viewMatrix = DX::XMMatrixLookAtLH(pos, forward, up);
+	DX::XMVECTOR target = DX::XMVectorAdd(pos, forward);
+	m_viewMatrix = DX::XMMatrixLookAtLH(pos, target, up);
 }
 
 void Camera::update(Renderer& renderer)
 {
+
+	cout << "pos: " << m_position.x << ", " << m_position.y << ", " << m_position.z << endl;
+
 	DX::XMVECTOR pos = XMLoadFloat3(&m_position);
 	m_tb.cameraPosition = pos;
 
-	initializeViewMatrix();
+	initializeViewMatrix(); // Update viewMatrix
 
 	m_viewProjectionMatrix = m_viewMatrix * m_projectionMatrix;
 	m_tb.viewProjectionMatrix = DX::XMMatrixTranspose(m_viewProjectionMatrix);
@@ -91,5 +98,26 @@ void Camera::createConstantBuffer(Renderer& renderer)
 	initData.SysMemSlicePitch = 0;
 
 	renderer.getDevice()->CreateBuffer(&cbDesc, &initData, &m_constantBuffer);
+}
+
+void Camera::processMouseMovement(float deltaX, float deltaY, bool constrainPitch)
+{
+	yaw += deltaX * sensitivity;
+	pitch += deltaY * sensitivity;
+
+	// Clamp pitch so we don't flip
+	if (constrainPitch)
+	{
+		const float limit = DX::XM_PIDIV2 - 0.01f;
+		if (pitch > limit) pitch = limit;
+		if (pitch < -limit) pitch = -limit;
+	}
+
+	// Recalculate forward direction from yaw/pitch
+	DX::XMFLOAT3 newForward;
+	newForward.x = cosf(pitch) * sinf(yaw);
+	newForward.y = sinf(pitch);
+	newForward.z = cosf(pitch) * cosf(yaw);
+	m_forward = newForward;
 }
 

@@ -62,6 +62,20 @@ void Scene::update(Renderer& renderer)
     if (inputHandler->IsKeyDown('A')) { m_camera.move(-moveSpeed, 0, 0); }
     if (inputHandler->IsKeyDown('D')) { m_camera.move(moveSpeed, 0, 0); }
 
+	// Camera mouse movement
+	inputHandler->updateMouseDelta();
+	if (inputHandler->IsMouseButtonDown(VK_RBUTTON))
+	{
+		float deltaX = inputHandler->GetMouseDeltaX();
+		float deltaY = inputHandler->GetMouseDeltaY();
+		if (deltaX > 0.00f)
+		{
+			int a = 2;
+		}
+
+		m_camera.processMouseMovement(deltaX, -deltaY);
+	}
+
 	inputHandler->update();
 
     m_camera.update(renderer);

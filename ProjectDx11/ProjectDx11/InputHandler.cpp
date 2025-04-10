@@ -14,6 +14,12 @@ InputHandler::InputHandler(string name)
     previousKeyState['A'] = false;
     previousKeyState['S'] = false;
     previousKeyState['D'] = false;
+
+    // Initialize mouse state
+    currentMouseState[VK_LBUTTON] = false;
+    currentMouseState[VK_RBUTTON] = false;
+    previousMouseState[VK_LBUTTON] = false;
+    previousMouseState[VK_RBUTTON] = false;
 }
 
 InputHandler::~InputHandler()
@@ -63,8 +69,6 @@ bool InputHandler::IsKeyDown(unsigned char key) const
     return currentIt->second;
 }
 
-
-
 bool InputHandler::IsMouseButtonPressed(int button) const
 {
     return currentMouseState.at(button) && !previousMouseState.at(button);
@@ -80,11 +84,6 @@ bool InputHandler::IsMouseButtonDown(int button) const
     return currentMouseState.at(button);
 }
 
-//void InputHandler::SetKeyState(unsigned char key, bool isPressed)
-//{
-//    currentKeyState[key] = isPressed;
-//}
-
 void InputHandler::SetKeyState(unsigned char key, bool isPressed)
 {
     if (currentKeyState.find(key) == currentKeyState.end()) 
@@ -94,9 +93,19 @@ void InputHandler::SetKeyState(unsigned char key, bool isPressed)
     currentKeyState[key] = isPressed;
 }
 
-
 void InputHandler::SetMouseButtonState(int button, bool isPressed)
 {
     currentMouseState[button] = isPressed;
 }
 
+void InputHandler::updateMouseDelta()
+{
+    POINT currentPos;
+    GetCursorPos(&currentPos);
+    ScreenToClient(GetForegroundWindow(), &currentPos);
+
+    deltaX = static_cast<float>(currentPos.x - lastMousePos.x);
+    deltaY = static_cast<float>(currentPos.y - lastMousePos.y);
+
+    lastMousePos = currentPos;
+}

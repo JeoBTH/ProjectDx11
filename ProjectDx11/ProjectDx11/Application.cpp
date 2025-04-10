@@ -6,7 +6,7 @@ Application::Application()
 	renderer(window),
 	game(renderer, window)
 {
-	//AttachConsoleWindow();
+	AttachConsoleWindow();
 }
 
 Application::~Application()
