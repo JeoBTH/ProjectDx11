@@ -23,9 +23,11 @@ private:
 	void initializeViewMatrix();
 	void createConstantBuffer(Renderer& renderer);
 
-	DX::XMFLOAT3 m_position; // Camera position (x, y, z)
-	DX::XMFLOAT3 m_forward;  // Forward direction
-	DX::XMFLOAT3 m_up;       // Up direction
+	DX::XMVECTOR m_position; // Camera position (x, y, z)
+	DX::XMVECTOR m_forward;  // Forward direction
+	DX::XMVECTOR m_up;       // Up direction
+	DX::XMVECTOR m_right;
+
 
 	float pitch = 0.0f;
 	float yaw = 0.0f;
@@ -37,7 +39,7 @@ public:
 
 	void move(float dx, float dy, float dz); // Move the camera
 	void setPosition(float x, float y, float z);
-	DX::XMFLOAT3 getPosition() const;
+	DX::XMVECTOR getPosition() const;
 
 	void processMouseMovement(float deltaX, float deltaY, bool constrainPitch = true);
 

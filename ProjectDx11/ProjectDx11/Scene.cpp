@@ -57,21 +57,18 @@ void Scene::update(Renderer& renderer)
 
 
     // Camera movement with WASD
-    if (inputHandler->IsKeyDown('W')){ m_camera.move(0, 0, moveSpeed); }
-    if (inputHandler->IsKeyDown('S')) { m_camera.move(0, 0, -moveSpeed); }
-    if (inputHandler->IsKeyDown('A')) { m_camera.move(-moveSpeed, 0, 0); }
-    if (inputHandler->IsKeyDown('D')) { m_camera.move(moveSpeed, 0, 0); }
+    if (inputHandler->IsKeyDown('W')){ m_camera.move(0, 0, -moveSpeed); }
+    if (inputHandler->IsKeyDown('S')) { m_camera.move(0, 0, moveSpeed); }
+    if (inputHandler->IsKeyDown('A')) { m_camera.move(moveSpeed, 0, 0); }
+    if (inputHandler->IsKeyDown('D')) { m_camera.move(-moveSpeed, 0, 0); }
 
 	// Camera mouse movement
 	inputHandler->updateMouseDelta();
-	if (inputHandler->IsMouseButtonDown(VK_RBUTTON))
+
+	if (inputHandler->IsMouseButtonDown(VK_RBUTTON)) // Right Click
 	{
 		float deltaX = inputHandler->GetMouseDeltaX();
 		float deltaY = inputHandler->GetMouseDeltaY();
-		if (deltaX > 0.00f)
-		{
-			int a = 2;
-		}
 
 		m_camera.processMouseMovement(deltaX, -deltaY);
 	}
