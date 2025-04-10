@@ -56,11 +56,13 @@ void Scene::update(Renderer& renderer)
 	}
 
 
-    // Camera WASD movement 
+    // Camera WASDEQ movement
     if (inputHandler->IsKeyDown('W')){ m_camera.move(0, 0, -moveSpeed); }
     if (inputHandler->IsKeyDown('S')) { m_camera.move(0, 0, moveSpeed); }
     if (inputHandler->IsKeyDown('A')) { m_camera.move(moveSpeed, 0, 0); }
     if (inputHandler->IsKeyDown('D')) { m_camera.move(-moveSpeed, 0, 0); }
+	if (inputHandler->IsKeyDown('E')) { m_camera.move(0, moveSpeed, 0); }
+	if (inputHandler->IsKeyDown('Q')) { m_camera.move(0, -moveSpeed, 0); }
 
 	
 	// Camera Mouse movement

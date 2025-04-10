@@ -24,15 +24,9 @@ Camera::~Camera()
 
 void Camera::move(float dx, float dy, float dz)
 {
-	//m_position.x += dx;
-	//m_position.y += dy;
-	//m_position.z += dz;
-
-
-	m_position = DX::XMVectorSubtract(m_position, DX::XMVectorScale(m_right, dx)); // Move left / right
-	m_position = DX::XMVectorSubtract(m_position, DX::XMVectorScale(m_forward, dz)); // Move forward / backward
-
-
+	m_position = DX::XMVectorSubtract(m_position, DX::XMVectorScale(m_right, dx));		// Move left/right
+	m_position = DX::XMVectorSubtract(m_position, DX::XMVectorScale(m_forward, dz));	// Move forward/backward
+	m_position = DX::XMVectorAdd(m_position, DX::XMVectorScale(m_up, dy));				// Move up/down
 }
 
 void Camera::setPosition(float x, float y, float z)
