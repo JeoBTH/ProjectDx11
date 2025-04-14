@@ -1,10 +1,8 @@
 #include "GameObject.hpp"
 #include <chrono>
 
-GameObject::GameObject(Renderer& renderer)
-	:mesh(renderer, "models/Cube.obj")
+GameObject::GameObject(Renderer& renderer, const string& objPath, const string& texturePath)
 {
-
 	// Initialize matrices to identity
 	m_worldMatrix = DX::XMMatrixIdentity();
 	m_translationMatrix = DX::XMMatrixIdentity();
@@ -12,11 +10,29 @@ GameObject::GameObject(Renderer& renderer)
 	m_scalingMatrix = DX::XMMatrixIdentity();
 
 	createConstantBuffer(renderer);
+
+	if (objPath != "")
+	{
+		if (texturePath == "")
+		{
+			mesh = new Mesh(renderer, objPath);
+		}
+		else
+		{
+			mesh = new Mesh(renderer, objPath, texturePath);
+		}
+
+	}
 }
 
 GameObject::~GameObject()
 {
 	m_constantBuffer->Release();
+
+	if (mesh != nullptr)
+	{
+		delete mesh;
+	}
 }
 
 void GameObject::translate(float x, float y, float z)
@@ -67,9 +83,10 @@ void GameObject::draw(Renderer& renderer)
 {
 	renderer.getDeviceContext()->VSSetConstantBuffers(0, 1, &m_constantBuffer); // Bind the constant buffer to the vertex shader (register b0)
 
-	// if(mesh) check implement
-	mesh.draw(renderer);
-
+	if (mesh != nullptr)
+	{
+		mesh->draw(renderer);
+	}
 }
 
 void GameObject::createConstantBuffer(Renderer& renderer)

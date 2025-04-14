@@ -18,10 +18,10 @@ void Light::update(Renderer& renderer)
     m_lb.ambientLight.color = DX::XMFLOAT4{ 0.1f, 0.1f, 0.1f, 1.0f };            // Gray ambient light
 
     // Point light settings
-    m_lb.pointLight.position = DX::XMFLOAT4(0.0f, 0.0f, -5.5f, 1.0f);            // Light above and behind the quad (0.0f,0.0f,0.1f)
+    m_lb.pointLight.position = DX::XMFLOAT4(0.0f, 5.0f, -5.5f, 1.0f);            // Light above and behind the quad (0.0f,0.0f,0.1f)
     m_lb.pointLight.color = DX::XMFLOAT4(1.0f, 0.1f, 0.1f, 1.0f);                // Warm light color
-    m_lb.pointLight.intensity = 15.5f;                                           // Full intensity
-    m_lb.pointLight.range = 10.0f;                                               // Range of 10 units
+    m_lb.pointLight.intensity = 25.5f;                                           // Full intensity
+    m_lb.pointLight.range = 15.0f;                                               // Range of 10 units
 
 
     m_lb.phongMaterial.specularColor = DX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);    // White specular highlight

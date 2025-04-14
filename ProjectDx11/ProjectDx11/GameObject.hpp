@@ -21,10 +21,10 @@ private:
 	ID3D11Buffer* m_constantBuffer = nullptr;
 	void createConstantBuffer(Renderer& renderer);
 
-	Mesh mesh;
+	Mesh* mesh = nullptr;
 
 public:
-	GameObject(Renderer& renderer);
+	GameObject(Renderer& renderer, const string& objPath = "", const string& texturePath = "");
 	~GameObject();
 
 	void translate(float x = 0.0f, float y = 0.0f, float z = 0.0f);

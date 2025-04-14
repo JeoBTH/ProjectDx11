@@ -6,11 +6,11 @@
 #include "tinyobjloader-release/tiny_obj_loader.h"
 
 
-Mesh::Mesh(Renderer& renderer, const std::string& objPath)
+Mesh::Mesh(Renderer& renderer, const string& objPath, const string& texturePath)
 {
 	loadFromOBJ(objPath);
 	createBuffers(renderer);
-	loadTexture(renderer);
+	loadTexture(renderer, texturePath);
 
 }
 
@@ -18,6 +18,9 @@ Mesh::~Mesh()
 {
 	m_vertexBuffer->Release();
 	m_indexBuffer->Release();
+
+	if (m_textureView) m_textureView->Release();
+	if (m_samplerState) m_samplerState->Release();
 
 }
 
@@ -52,7 +55,8 @@ void Mesh::loadFromOBJ(const std::string& path)
 	vector<tinyobj::material_t> materials;
 	string warn, err;
 
-	bool success = tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, path.c_str());
+	string fullPath = "Models/" + path;
+	bool success = tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, fullPath.c_str());
 	if (!warn.empty()) cout << "WARN: " << warn << std::endl;
 	if (!err.empty()) cerr << "ERR: " << err << std::endl;
 	if (!success) throw runtime_error("Failed to load OBJ");
@@ -98,19 +102,24 @@ void Mesh::draw(Renderer& renderer)
 	// Set the primitive topology
 	renderer.getDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST); // The other alternative is D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP, read up on that
 
+	// Bind the texture and sampler state
+	renderer.getDeviceContext()->PSSetShaderResources(0, 1, &m_textureView); // Bind the texture
+	renderer.getDeviceContext()->PSSetSamplers(0, 1, &m_samplerState);       // Bind the sampler
+
 	// Draw
 	renderer.getDeviceContext()->DrawIndexed(static_cast<UINT>(m_indices.size()), 0, 0); // 6: The number of indices in my index buffer.
 }
 
 
-void Mesh::loadTexture(Renderer& renderer)
+void Mesh::loadTexture(Renderer& renderer, const string& texturePath)
 {
 	// Flip vertically for DirectX-style UVs
 	stbi_set_flip_vertically_on_load(true);
 
 	// Load the texture
 	int width, height, channels;
-	unsigned char* imageData = stbi_load("Textures/T_CubeTest_D.png", &width, &height, &channels, STBI_rgb_alpha);
+	string fullPath = "Textures/" + texturePath;
+	unsigned char* imageData = stbi_load(fullPath.c_str(), &width, &height, &channels, STBI_rgb_alpha);
 
 	// Flip horizontally for DirectX-style UVs
 	for (int y = 0; y < height; ++y)
@@ -152,10 +161,7 @@ void Mesh::loadTexture(Renderer& renderer)
 	stbi_image_free(imageData); // Free the loaded image data
 
 	//Create a Shader Resource View
-	ID3D11ShaderResourceView* textureView = nullptr;
-
-
-	renderer.getDevice()->CreateShaderResourceView(texture, nullptr, &textureView);
+	renderer.getDevice()->CreateShaderResourceView(texture, nullptr, &m_textureView);
 
 
 	// Create a Sampler State
@@ -165,18 +171,10 @@ void Mesh::loadTexture(Renderer& renderer)
 	samplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_WRAP; // Wrap V
 	samplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;
 
-	ID3D11SamplerState* samplerState = nullptr;
-
-	renderer.getDevice()->CreateSamplerState(&samplerDesc, &samplerState);
-
-	renderer.getDeviceContext()->PSSetShaderResources(0, 1, &textureView); // Bind the texture
-
-	renderer.getDeviceContext()->PSSetSamplers(0, 1, &samplerState);       // Bind the sampler
+	renderer.getDevice()->CreateSamplerState(&samplerDesc, &m_samplerState);
 
 	// Release resources after use
 	if (texture) texture->Release();
-	if (textureView) textureView->Release();
-	if (samplerState) samplerState->Release();
 }
 
 

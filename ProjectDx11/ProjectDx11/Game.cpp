@@ -8,8 +8,12 @@ Game::Game(Renderer& renderer, Window& window)
     window.setInputHandler(&inputHandler); // Pass input handler to window
     scene.setInputHandler(&inputHandler); // Pass input handler to scene
 
-	GameObject* rectangle = new GameObject(renderer);
-	scene.addGameObject(rectangle);
+	GameObject* cube = new GameObject(renderer,"Cube.obj", "T_CubeTest_D.png");
+	cube->translate(0.0f, 0.5f, 0.0f);
+	scene.addGameObject(cube);
+
+	GameObject* landscape = new GameObject(renderer,"Landscape.obj", "T_BTH_D.png");
+	scene.addGameObject(landscape);
 
 	Light* light = new Light(renderer);
 	scene.addLight(light);

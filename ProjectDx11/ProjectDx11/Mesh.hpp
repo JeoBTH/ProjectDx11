@@ -22,13 +22,15 @@ private:
 	UINT m_stride = sizeof(Vertex);
 	UINT m_offset = 0;
 
+	ID3D11ShaderResourceView* m_textureView = nullptr;  // Store texture view
+	ID3D11SamplerState* m_samplerState = nullptr;       // Store sampler state
 
-	void loadFromOBJ(const std::string& path);
+	void loadFromOBJ(const string& path);
 	void createBuffers(Renderer& renderer);
-	void loadTexture(Renderer& renderer);
+	void loadTexture(Renderer& renderer, const string& texturePath);
 
 public:
-	Mesh(Renderer& renderer, const std::string& objPath);
+	Mesh(Renderer& renderer, const string& objPath, const string& texturePath = "T_CubeTest_D.png");
 	~Mesh();
 
 	void draw(Renderer& renderer);

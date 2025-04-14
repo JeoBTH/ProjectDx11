@@ -25,6 +25,8 @@ private:
 	void createShaders();
 
 	void setPipelineState();
+	ID3D11DepthStencilView* m_depthStencilView = nullptr;
+	void createDepthStencil();
 
 public:
 	Renderer(Window& window);
