@@ -2,7 +2,7 @@
 #include <chrono>
 
 GameObject::GameObject(Renderer& renderer)
-	:mesh(renderer)
+	:mesh(renderer, "models/Cube.obj")
 {
 
 	// Initialize matrices to identity
@@ -10,9 +10,6 @@ GameObject::GameObject(Renderer& renderer)
 	m_translationMatrix = DX::XMMatrixIdentity();
 	m_rotationMatrix = DX::XMMatrixIdentity();
 	m_scalingMatrix = DX::XMMatrixIdentity();
-
-	translate(0.0f, 0.0f, 0.0f);
-	scale();
 
 	createConstantBuffer(renderer);
 }

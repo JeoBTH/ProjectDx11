@@ -13,17 +13,22 @@ private:
 		float uv[2];
 	};
 
+	vector<Vertex> m_vertices;
+	vector<unsigned int> m_indices;
+
 	ID3D11Buffer* m_vertexBuffer = nullptr;
 	ID3D11Buffer* m_indexBuffer = nullptr;
 
-	void createMesh(Renderer& renderer);
+	UINT m_stride = sizeof(Vertex);
+	UINT m_offset = 0;
+
+
+	void loadFromOBJ(const std::string& path);
+	void createBuffers(Renderer& renderer);
 	void loadTexture(Renderer& renderer);
 
-	UINT m_stride;
-	UINT m_offset;
-
 public:
-	Mesh(Renderer& renderer);
+	Mesh(Renderer& renderer, const std::string& objPath);
 	~Mesh();
 
 	void draw(Renderer& renderer);

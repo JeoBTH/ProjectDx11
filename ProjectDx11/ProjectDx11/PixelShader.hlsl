@@ -35,7 +35,7 @@ float4 main(Input input) : SV_TARGET
     
     // Diffuse Lighting
     float3 lightDistance = pointLightPos.xyz - input.worldPos.xyz;
-    float3 lightDirection = -1 * normalize(lightDistance);
+    float3 lightDirection = normalize(lightDistance);
     
     float attenuation = 1 / pow(length(lightDistance), 2);
     //float attenuation = (lightDistance < pointLightRange) ? (1 / pow(length(lightDistance), 2)) : 0;
@@ -46,7 +46,7 @@ float4 main(Input input) : SV_TARGET
     
     // Specular Lighting
     float3 viewDir = normalize(input.cameraPosition.xyz - input.worldPos.xyz);
-    float3 reflectDir = reflect(lightDirection, input.normal.xyz);
+    float3 reflectDir = reflect(-1 * lightDirection, input.normal.xyz);
     
     float cosDelta = max(dot(viewDir, reflectDir), 0);
     
@@ -54,4 +54,6 @@ float4 main(Input input) : SV_TARGET
     float4 specular = specularColor * specFactor;
 
     return (ambient + diffuse) + specular;
+    //return float4(input.uv, 0.0f, 1.0f); // visualize UVs
+    //return texture0.Sample(samplerState, input.uv);
 }

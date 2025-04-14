@@ -2,51 +2,16 @@
 #include <iostream>
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb-master/stb_image.h"
+#define TINYOBJLOADER_IMPLEMENTATION
+#include "tinyobjloader-release/tiny_obj_loader.h"
 
-void Mesh::createMesh(Renderer& renderer)
+
+Mesh::Mesh(Renderer& renderer, const std::string& objPath)
 {
-	// Define our vertices
-	Vertex vertices[] =
-	{	//position				//normal			//uv
-		{ -1.f, -1.f, 0.f,		0.f, 0.f, 1.f,		0.0f, 1.0f}, // Bot-left corner
-		{ -1.f,1.f,0.f,			0.f,0.f,1.f,		0.0f, 0.0f}, // Top-left corner
-		{ 1.f,1.f,0.f,			0.f,0.f,1.f,		1.0f, 0.0f}, // Top-right corner
-		{ 1.f,-1.f,0.f,			0.f,0.f,1.f,		1.0f, 1.0f} // Bot-right corner
-	};
-
-	// Create our Vertex Buffer Descriptor
-	// Move our vertices from RAM to VRAM
-	auto vertexBufferDesc = CD3D11_BUFFER_DESC(sizeof(vertices), D3D11_BIND_VERTEX_BUFFER); // how much byte to take
-	D3D11_SUBRESOURCE_DATA vertexData = { 0 };
-	vertexData.pSysMem = vertices; // where to take
-	// Create our Vertex Buffer
-	renderer.getDevice()->CreateBuffer(&vertexBufferDesc, &vertexData, &m_vertexBuffer);
-
-	unsigned int indices[] = { 0, 1, 2, 0, 2, 3 };
-
-	// Create our Index Buffer Descriptor
-	D3D11_BUFFER_DESC indexBufferDesc;
-	indexBufferDesc.ByteWidth = sizeof(indices);
-	indexBufferDesc.Usage = D3D11_USAGE_IMMUTABLE;
-	indexBufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
-	indexBufferDesc.CPUAccessFlags = 0;
-	indexBufferDesc.MiscFlags = 0;
-
-	D3D11_SUBRESOURCE_DATA indexBufferData;
-	indexBufferData.pSysMem = indices;
-
-	// Create our Index Buffer
-	renderer.getDevice()->CreateBuffer(&indexBufferDesc, &indexBufferData, &m_indexBuffer);
-}
-
-Mesh::Mesh(Renderer& renderer)
-{
-	createMesh(renderer);
+	loadFromOBJ(objPath);
+	createBuffers(renderer);
 	loadTexture(renderer);
-	
-	// stride is the size between each vertex, when im done with that point, how much in memory do i have to go until i reach the next one
-	m_stride = sizeof(Vertex);
-	m_offset = 0;
+
 }
 
 Mesh::~Mesh()
@@ -55,6 +20,72 @@ Mesh::~Mesh()
 	m_indexBuffer->Release();
 
 }
+
+void Mesh::createBuffers(Renderer& renderer)
+{
+	D3D11_BUFFER_DESC vertexBufferDesc = {};
+	vertexBufferDesc.Usage = D3D11_USAGE_DEFAULT;
+	vertexBufferDesc.ByteWidth = UINT(sizeof(Vertex) * m_vertices.size());
+	vertexBufferDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+
+	D3D11_SUBRESOURCE_DATA vertexData = {};
+	vertexData.pSysMem = m_vertices.data();
+
+	renderer.getDevice()->CreateBuffer(&vertexBufferDesc, &vertexData, &m_vertexBuffer);
+
+	D3D11_BUFFER_DESC indexBufferDesc = {};
+	indexBufferDesc.Usage = D3D11_USAGE_DEFAULT;
+	indexBufferDesc.ByteWidth = UINT(sizeof(unsigned int) * m_indices.size());
+	indexBufferDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;
+
+	D3D11_SUBRESOURCE_DATA indexBufferData = {};
+	indexBufferData.pSysMem = m_indices.data();
+
+	renderer.getDevice()->CreateBuffer(&indexBufferDesc, &indexBufferData, &m_indexBuffer);
+}
+
+void Mesh::loadFromOBJ(const std::string& path)
+{
+
+	tinyobj::attrib_t attrib;
+	vector<tinyobj::shape_t> shapes;
+	vector<tinyobj::material_t> materials;
+	string warn, err;
+
+	bool success = tinyobj::LoadObj(&attrib, &shapes, &materials, &warn, &err, path.c_str());
+	if (!warn.empty()) cout << "WARN: " << warn << std::endl;
+	if (!err.empty()) cerr << "ERR: " << err << std::endl;
+	if (!success) throw runtime_error("Failed to load OBJ");
+
+	for (auto& shape : shapes)
+	{
+		for (auto& index : shape.mesh.indices)
+		{
+			Vertex v{};
+
+			v.position[0] = attrib.vertices[3 * index.vertex_index + 0];
+			v.position[1] = attrib.vertices[3 * index.vertex_index + 1];
+			v.position[2] = attrib.vertices[3 * index.vertex_index + 2];
+
+			if (index.normal_index >= 0)
+			{
+				v.normal[0] = attrib.normals[3 * index.normal_index + 0];
+				v.normal[1] = attrib.normals[3 * index.normal_index + 1];
+				v.normal[2] = attrib.normals[3 * index.normal_index + 2];
+			}
+
+			if (index.texcoord_index >= 0)
+			{
+				v.uv[0] = attrib.texcoords[2 * index.texcoord_index + 0];
+				v.uv[1] = attrib.texcoords[2 * index.texcoord_index + 1];
+			}
+
+			m_vertices.push_back(v);
+			m_indices.push_back(static_cast<unsigned int>(m_indices.size()));
+		}
+	}
+}
+
 
 void Mesh::draw(Renderer& renderer)
 {
@@ -68,15 +99,36 @@ void Mesh::draw(Renderer& renderer)
 	renderer.getDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST); // The other alternative is D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP, read up on that
 
 	// Draw
-	renderer.getDeviceContext()->DrawIndexed(6, 0, 0); // 6: The number of indices in my index buffer.
+	renderer.getDeviceContext()->DrawIndexed(static_cast<UINT>(m_indices.size()), 0, 0); // 6: The number of indices in my index buffer.
 }
 
 
 void Mesh::loadTexture(Renderer& renderer)
 {
+	// Flip vertically for DirectX-style UVs
+	stbi_set_flip_vertically_on_load(true);
+
 	// Load the texture
 	int width, height, channels;
-	unsigned char* imageData = stbi_load("T_BTH_D.png", &width, &height, &channels, STBI_rgb_alpha);
+	unsigned char* imageData = stbi_load("Textures/T_CubeTest_D.png", &width, &height, &channels, STBI_rgb_alpha);
+
+	// Flip horizontally for DirectX-style UVs
+	for (int y = 0; y < height; ++y)
+	{
+		unsigned char* row = imageData + y * width * 4; // 4 bytes per pixel (RGBA)
+		for (int x = 0; x < width / 2; ++x)
+		{
+			int leftIndex = x * 4;
+			int rightIndex = (width - 1 - x) * 4;
+
+			// Swap pixels
+			for (int c = 0; c < 4; ++c)
+			{
+				swap(row[leftIndex + c], row[rightIndex + c]);
+			}
+		}
+	}
+
 
 	//Create the texture
 	D3D11_TEXTURE2D_DESC textureDesc = {};

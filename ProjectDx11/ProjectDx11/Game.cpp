@@ -31,7 +31,6 @@ void Game::update(Renderer& renderer)
 {
 	scene.update(renderer);
 	
-
 }
 
 void Game::draw(Renderer& renderer)

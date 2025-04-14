@@ -61,7 +61,7 @@ void Camera::initializeViewMatrix()
 void Camera::update(Renderer& renderer)
 {
 
-	cout << "pos: " << DX::XMVectorGetX(m_position) << ", " << DX::XMVectorGetY(m_position) << ", " << DX::XMVectorGetZ(m_position) << endl;
+	//cout << "pos: " << DX::XMVectorGetX(m_position) << ", " << DX::XMVectorGetY(m_position) << ", " << DX::XMVectorGetZ(m_position) << endl;
 
 	m_tb.cameraPosition = m_position;
 
