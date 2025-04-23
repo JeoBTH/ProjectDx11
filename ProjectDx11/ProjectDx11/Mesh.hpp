@@ -22,8 +22,8 @@ private:
 	UINT m_stride = sizeof(Vertex);
 	UINT m_offset = 0;
 
-	ID3D11ShaderResourceView* m_textureView = nullptr;  // Store texture view
-	ID3D11SamplerState* m_samplerState = nullptr;       // Store sampler state
+	ID3D11ShaderResourceView* m_textureView = nullptr;  // Store texture view & sampler state in order for meshes to use different textures
+	ID3D11SamplerState* m_samplerState = nullptr;
 
 	void loadFromOBJ(const string& path);
 	void createBuffers(Renderer& renderer);

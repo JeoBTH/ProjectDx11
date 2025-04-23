@@ -30,7 +30,7 @@ void Application::run()
 {
 
 	MSG msg = {};
-	while (window.processMessages())  // Keep processing messages
+	while (window.processMessages())
 	{
 		renderer.beginFrame();
 		game.update(renderer);

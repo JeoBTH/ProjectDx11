@@ -85,5 +85,4 @@ void Scene::draw(Renderer& renderer)
 	{
 		gameObjects->draw(renderer);
 	}
-
 }

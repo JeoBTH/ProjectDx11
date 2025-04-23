@@ -26,11 +26,6 @@ Game::~Game()
 	scene.clearLights();
 }
 
-void Game::addGameObject(GameObject* gameObject)
-{
-	scene.addGameObject(gameObject);
-}
-
 void Game::update(Renderer& renderer)
 {
 	scene.update(renderer);
