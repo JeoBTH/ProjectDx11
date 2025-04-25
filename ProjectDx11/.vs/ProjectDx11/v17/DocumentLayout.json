@@ -154,21 +154,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 12,
+          "SelectedChildIndex": 11,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DirectionalLight.cpp",
-              "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\DirectionalLight.cpp",
-              "RelativeDocumentMoniker": "ProjectDx11\\DirectionalLight.cpp",
-              "ToolTip": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\DirectionalLight.cpp",
-              "RelativeToolTip": "ProjectDx11\\DirectionalLight.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-04-25T07:46:31.37Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 19,
@@ -215,8 +202,7 @@
               "RelativeToolTip": "ProjectDx11\\Game.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-18T15:36:50.054Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T15:36:50.054Z"
             },
             {
               "$type": "Document",
@@ -228,8 +214,7 @@
               "RelativeToolTip": "ProjectDx11\\Scene.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAFYAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-02-18T15:53:40.051Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T15:53:40.051Z"
             },
             {
               "$type": "Document",
@@ -241,8 +226,7 @@
               "RelativeToolTip": "ProjectDx11\\Scene.hpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-18T15:52:50.473Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T15:52:50.473Z"
             },
             {
               "$type": "Document",
@@ -252,7 +236,7 @@
               "RelativeDocumentMoniker": "ProjectDx11\\PixelShader.hlsl",
               "ToolTip": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\PixelShader.hlsl",
               "RelativeToolTip": "ProjectDx11\\PixelShader.hlsl",
-              "ViewState": "AgIAABMAAAAAAAAAAAAowD4AAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAABEAAAAAAAAAAAAYwDoAAABbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-04-24T12:24:16.645Z",
               "EditorCaption": ""
@@ -267,8 +251,7 @@
               "RelativeToolTip": "ProjectDx11\\PhongMaterial.cpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAABZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-04-25T07:48:33.978Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-25T07:48:33.978Z"
             },
             {
               "$type": "Document",
@@ -314,9 +297,22 @@
               "RelativeDocumentMoniker": "ProjectDx11\\DirectionalLight.hpp",
               "ToolTip": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\DirectionalLight.hpp",
               "RelativeToolTip": "ProjectDx11\\DirectionalLight.hpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAABSAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-04-25T07:45:29.319Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DirectionalLight.cpp",
+              "DocumentMoniker": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\DirectionalLight.cpp",
+              "RelativeDocumentMoniker": "ProjectDx11\\DirectionalLight.cpp",
+              "ToolTip": "C:\\Users\\jespe\\Documents\\GitHub\\ProjectDx11\\ProjectDx11\\ProjectDx11\\DirectionalLight.cpp",
+              "RelativeToolTip": "ProjectDx11\\DirectionalLight.cpp",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABQAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-25T07:46:31.37Z",
               "EditorCaption": ""
             },
             {
@@ -329,8 +325,7 @@
               "RelativeToolTip": "ProjectDx11\\PointLight.cpp",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-04-25T07:44:47.142Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-25T07:44:47.142Z"
             },
             {
               "$type": "Document",
@@ -342,8 +337,7 @@
               "RelativeToolTip": "ProjectDx11\\GameObject.hpp",
               "ViewState": "AgIAAAEAAAAAAAAAAAAewBQAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-02-18T15:54:13.012Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-18T15:54:13.012Z"
             },
             {
               "$type": "Document",
@@ -355,8 +349,7 @@
               "RelativeToolTip": "ProjectDx11\\PointLight.hpp",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-04-25T07:44:23.778Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-25T07:44:23.778Z"
             },
             {
               "$type": "Document",

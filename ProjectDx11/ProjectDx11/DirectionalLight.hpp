@@ -10,12 +10,13 @@ private:
 
     struct DirectionalLightData
     {
-        DX::XMFLOAT4 position;          // Light position (world space)
+        DX::XMFLOAT4 direction;          // Light position (world space)
         DX::XMFLOAT4 color;             // Light color (RGBA)
         float intensity;                // Intensity of the point light
         float padding[3];
     }m_DirectionalLightData;
 
+    DX::XMFLOAT4 degreesToDirection(float rotationX, float rotationY, float rotationZ);
     void createConstantBuffer(Renderer& renderer) override;
 
     //Shadow
@@ -30,7 +31,7 @@ private:
     ID3D11DepthStencilView* m_oldDSV = nullptr;
 public:
 
-	DirectionalLight(Renderer& renderer, const DX::XMFLOAT4& position = DX::XMFLOAT4(-3.0f, -3.0f, 0.0f, 1.0f), const DX::XMFLOAT4& color = DX::XMFLOAT4(0.1f, 0.1f, 0.5f, 1.0f), float intensity = 10.0f);
+	DirectionalLight(Renderer& renderer, float rotationX = -45.0f, float rotationY = 90.0f, float rotationZ = 0.0f, const DX::XMFLOAT4& color = DX::XMFLOAT4(0.1f, 0.1f, 0.5f, 1.0f), float intensity = 10.0f);
 	~DirectionalLight();
 
     void update(Renderer& renderer) override;

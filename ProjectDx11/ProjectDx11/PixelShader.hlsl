@@ -23,7 +23,7 @@ cbuffer PointLightBuffer : register(b2)
 
 cbuffer DirectionalLightBuffer : register(b3)
 {
-    float4 directionalLightPos;             // Point light position (world space)   16
+    float4 directionalLightDirection;             // Point light position (world space)   16
     float4 directionalLightColor;           // Point light color                    16
     float directionalLightIntensity;        //                                      4
     float3 padding2;
@@ -59,9 +59,9 @@ float4 main(Input input) : SV_TARGET
     float4 pointDiffuse = texColor * pointLightColor * diffuseFactor * pointLightIntensity;
     
      // Directional Light Diffuse (treat pos as direction)
-    float3 directionalDir = normalize(-directionalLightPos.xyz); // Negate if you want light *towards* surface
-    float NdotL_dir = max(dot(input.normal, directionalDir), 0.0f);
-    float4 directionalDiffuse = texColor * directionalLightColor * directionalLightIntensity * NdotL_dir;
+    float3 directionalLightDir = normalize(-directionalLightDirection.xyz); // Invert if light is "pointing at" surface
+    float NdotL_dir = max(dot(input.normal, directionalLightDir), 0.0f);
+    float4 directionalDiffuse = texColor * directionalLightColor * NdotL_dir * directionalLightIntensity;
 
     // Combine Diffuse
     float4 diffuse = pointDiffuse + directionalDiffuse;

@@ -3,9 +3,9 @@
 
 
 
-DirectionalLight::DirectionalLight(Renderer& renderer, const DX::XMFLOAT4& position, const DX::XMFLOAT4& color, float intensity)
+DirectionalLight::DirectionalLight(Renderer& renderer, float rotationX, float rotationY, float rotationZ, const DX::XMFLOAT4& color, float intensity)
 {
-    m_DirectionalLightData.position = position;
+    m_DirectionalLightData.direction = degreesToDirection(rotationX, rotationY, rotationZ);
     m_DirectionalLightData.color = color;
     m_DirectionalLightData.intensity = intensity;
 
@@ -17,6 +17,28 @@ DirectionalLight::~DirectionalLight()
 {
 }
 
+
+DX::XMFLOAT4 DirectionalLight::degreesToDirection(float rotationX, float rotationY, float rotationZ)
+{
+    // Convert degrees to radians
+    float yaw = DX::XMConvertToRadians(rotationY);
+    float pitch = DX::XMConvertToRadians(rotationX);
+    float roll = DX::XMConvertToRadians(rotationZ);
+
+    // Create rotation matrix
+    DX::XMMATRIX rotMatrix = DX::XMMatrixRotationRollPitchYaw(pitch, yaw, roll);
+
+    // Forward direction (-Z in DirectX)
+    DX::XMVECTOR baseDirection = DX::XMVectorSet(0, 0, -1, 0);
+
+    // Rotate the base direction
+    DX::XMVECTOR rotatedDirection = XMVector3TransformNormal(baseDirection, rotMatrix);
+
+    // Store direction in buffer (negated for shader convention if needed)
+    DX::XMFLOAT3 finalDir;
+    XMStoreFloat3(&finalDir, rotatedDirection);
+    return DX::XMFLOAT4(finalDir.x, finalDir.y, finalDir.z, 0.0f);
+}
 
 void DirectionalLight::createConstantBuffer(Renderer& renderer)
 {
