@@ -21,19 +21,11 @@ private:
         float padding[2];               // Padding for alignment
     };
 
-    struct PhongMaterial
-    {
-        DX::XMFLOAT4 specularColor;     // Specular light color
-        float specularIntensity;        // Specular intensity (Ks)
-        float shininess;                // Shininess (higher = sharper highlight)
-        float padding[2];               // Padding for alignment
-    };
 
     struct LightBuffer
     {
         AmbientLight ambientLight;      // Ambient light data
         PointLight pointLight;          // Point light data
-        PhongMaterial phongMaterial;    // Phong material data
 
     }m_lb;
 

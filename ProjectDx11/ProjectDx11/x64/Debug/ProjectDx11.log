@@ -1,7 +1,4 @@
-﻿  Application.cpp
-  Game.cpp
-  Light.cpp
-  Main.cpp
+﻿  Game.cpp
   Scene.cpp
   Generating Code...
   ProjectDx11.vcxproj -> C:\Users\jespe\Documents\GitHub\ProjectDx11\ProjectDx11\x64\Debug\ProjectDx11.exe

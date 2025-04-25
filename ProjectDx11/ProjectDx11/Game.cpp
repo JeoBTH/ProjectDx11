@@ -18,12 +18,16 @@ Game::Game(Renderer& renderer, Window& window)
 	Light* light = new Light(renderer);
 	scene.addLight(light);
 
+	PhongMaterial* phongMaterial = new PhongMaterial(renderer);
+	scene.addMaterial(phongMaterial);
+
 }
 
 Game::~Game()
 {
 	scene.clearGameObjects();
 	scene.clearLights();
+	scene.clearMaterials();
 }
 
 void Game::update(Renderer& renderer)

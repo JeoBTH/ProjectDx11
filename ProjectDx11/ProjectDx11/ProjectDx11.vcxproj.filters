@@ -25,15 +25,18 @@
     <Filter Include="Source Files\Game">
       <UniqueIdentifier>{06b7afad-4c50-488e-a24b-6034b05bd5a1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Core\Lights">
+      <UniqueIdentifier>{680e6dc5-ed8e-4f7d-a419-bb8b822339c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Lights">
+      <UniqueIdentifier>{15c8cfe4-dbd6-4fe7-8607-a8782eaa1c1a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Window.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>Source Files\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Light.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
@@ -66,12 +69,24 @@
     <ClCompile Include="InputHandler.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Light.cpp">
+      <Filter>Source Files\Core\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="AmbientLight.cpp">
+      <Filter>Source Files\Core\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="PointLight.cpp">
+      <Filter>Source Files\Core\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="DirectionalLight.cpp">
+      <Filter>Source Files\Core\Lights</Filter>
+    </ClCompile>
+    <ClCompile Include="PhongMaterial.cpp">
+      <Filter>Source Files\Core\Lights</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.hpp">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="Light.hpp">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.hpp">
@@ -103,6 +118,21 @@
     </ClInclude>
     <ClInclude Include="InputHandler.hpp">
       <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.hpp">
+      <Filter>Header Files\Core\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="AmbientLight.hpp">
+      <Filter>Header Files\Core\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="PointLight.hpp">
+      <Filter>Header Files\Core\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="DirectionalLight.hpp">
+      <Filter>Header Files\Core\Lights</Filter>
+    </ClInclude>
+    <ClInclude Include="PhongMaterial.hpp">
+      <Filter>Header Files\Core\Lights</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

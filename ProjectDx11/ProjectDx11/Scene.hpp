@@ -4,6 +4,7 @@
 #include "GameObject.hpp"
 #include "Light.hpp"
 #include "Camera.hpp"
+#include "PhongMaterial.hpp"
 
 using namespace std;
 
@@ -12,6 +13,7 @@ class Scene
 private:
 	vector<GameObject*> m_gameObjects;
 	vector<Light*> m_lights;
+	vector<PhongMaterial*> m_materials;
 	Camera m_camera;
 	float moveSpeed; // Camera movement speed
 
@@ -27,6 +29,9 @@ public:
 
 	void addLight(Light* light);
 	void clearLights();
+
+	void addMaterial(PhongMaterial* material);
+	void clearMaterials();
 
 	void setInputHandler(InputHandler* handler) { inputHandler = handler; }
 

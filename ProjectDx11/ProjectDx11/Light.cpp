@@ -23,12 +23,6 @@ void Light::update(Renderer& renderer)
     m_lb.pointLight.intensity = 25.5f;                                           // Full intensity
     m_lb.pointLight.range = 15.0f;                                               // Range of 10 units
 
-
-    m_lb.phongMaterial.specularColor = DX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);    // White specular highlight
-    m_lb.phongMaterial.specularIntensity = 5.0f;                                 // Strength of specular reflection
-    m_lb.phongMaterial.shininess = 10.0f;                                        // Higher value = sharper reflection
-
-
     // Map and update the constant buffer
     D3D11_MAPPED_SUBRESOURCE mappedResource = {};
     renderer.getDeviceContext()->Map(m_lightBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);

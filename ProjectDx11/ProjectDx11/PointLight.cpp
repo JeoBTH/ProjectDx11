@@ -1,0 +1,5 @@
+#include "PointLight.hpp"
+
+PointLight::PointLight()
+{
+}

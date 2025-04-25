@@ -43,6 +43,20 @@ void Scene::clearLights()
 	m_lights.clear();
 }
 
+void Scene::addMaterial(PhongMaterial* material)
+{
+	m_materials.push_back(material);
+}
+
+void Scene::clearMaterials()
+{
+	for (auto* phongMaterial : m_materials)
+	{
+		delete phongMaterial;
+	}
+	m_materials.clear();
+}
+
 Camera& Scene::getCamera()
 {
 	return m_camera;
@@ -58,6 +72,10 @@ void Scene::update(Renderer& renderer)
 	for (auto* light : m_lights)
 	{
 		light->update(renderer);
+	}
+	for (auto* phongMaterial : m_materials)
+	{
+		phongMaterial->update(renderer);
 	}
 
 

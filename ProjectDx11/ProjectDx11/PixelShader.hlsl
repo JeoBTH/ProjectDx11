@@ -16,10 +16,13 @@ cbuffer LightBuffer : register(b1)
     float pointLightIntensity;              //                                      4
     float pointLightRange;                  // --------> Not in use yet             4
     float2 padding;                         // padding                              8
-    
-    float4 specularColor;                   // Specular light color
-    float specularIntensity;                // Specular intensity (Ks)
-    float shininess;                        // Shininess (higher = sharper highlight)
+}
+
+cbuffer MaterialBuffer : register(b3)
+{
+    float4 specularColor; // Specular light color
+    float specularIntensity; // Specular intensity (Ks)
+    float shininess; // Shininess (higher = sharper highlight)
 }
 
 Texture2D texture0 : register(t0); // Bind the texture to slot t0
