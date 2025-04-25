@@ -10,13 +10,13 @@ private:
 
     struct DirectionalLightData
     {
-        DX::XMFLOAT4 direction;          // Light position (world space)
+        DX::XMVECTOR direction;          // Light position (world space)
         DX::XMFLOAT4 color;             // Light color (RGBA)
         float intensity;                // Intensity of the point light
-        float padding[3];
     }m_DirectionalLightData;
 
-    DX::XMFLOAT4 degreesToDirection(float rotationX, float rotationY, float rotationZ);
+    DX::XMVECTOR degreesToDirection(float rotationX, float rotationY, float rotationZ);
+    void initializeViewProjectionMatrix(Renderer& renderer);
     void createConstantBuffer(Renderer& renderer) override;
 
     //Shadow

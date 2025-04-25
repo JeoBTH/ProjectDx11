@@ -78,7 +78,6 @@ void Scene::update(Renderer& renderer)
 		phongMaterial->update(renderer);
 	}
 
-
     // Camera WASDEQ movement
     if (inputHandler->IsKeyDown('W')){ m_camera.move(0, 0, -moveSpeed); }
     if (inputHandler->IsKeyDown('S')) { m_camera.move(0, 0, moveSpeed); }
@@ -87,7 +86,6 @@ void Scene::update(Renderer& renderer)
 	if (inputHandler->IsKeyDown('E')) { m_camera.move(0, moveSpeed, 0); }
 	if (inputHandler->IsKeyDown('Q')) { m_camera.move(0, -moveSpeed, 0); }
 
-	
 	// Camera Mouse movement
 	if (inputHandler->IsMouseButtonDown(VK_RBUTTON)) // Checks for Right Click
 	{
@@ -105,17 +103,20 @@ void Scene::update(Renderer& renderer)
 void Scene::draw(Renderer& renderer)
 {
 	// Shadow Pass
-	//for (auto* light : m_lights) 
-	//{
-	//	light->renderBeginShadowMap(renderer);
+	for (auto* light : m_lights) 
+	{
+		if (auto* dirLight = dynamic_cast<DirectionalLight*>(light))
+		{
+			dirLight->renderBeginShadowMap(renderer);
 
-	//	for (auto* gameObjects : m_gameObjects)
-	//	{
-	//		gameObjects->drawShadows(renderer);
-	//	}
+			for (auto* gameObjects : m_gameObjects)
+			{
+				gameObjects->drawShadows(renderer);
+			}
 
-	//	light->renderEndShadowMap(renderer);
-	//}
+			dirLight->renderEndShadowMap(renderer);
+		}
+	}
 
 	// Main Pass
 	for (auto* gameObjects : m_gameObjects)

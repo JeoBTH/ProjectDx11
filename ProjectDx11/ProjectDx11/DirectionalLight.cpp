@@ -10,7 +10,8 @@ DirectionalLight::DirectionalLight(Renderer& renderer, float rotationX, float ro
     m_DirectionalLightData.intensity = intensity;
 
     createConstantBuffer(renderer);
-    //initializeShadowMap(renderer);
+    initializeViewProjectionMatrix(renderer);
+    initializeShadowMap(renderer);
 }
 
 DirectionalLight::~DirectionalLight()
@@ -18,7 +19,7 @@ DirectionalLight::~DirectionalLight()
 }
 
 
-DX::XMFLOAT4 DirectionalLight::degreesToDirection(float rotationX, float rotationY, float rotationZ)
+DX::XMVECTOR DirectionalLight::degreesToDirection(float rotationX, float rotationY, float rotationZ)
 {
     // Convert degrees to radians
     float yaw = DX::XMConvertToRadians(rotationY);
@@ -33,11 +34,20 @@ DX::XMFLOAT4 DirectionalLight::degreesToDirection(float rotationX, float rotatio
 
     // Rotate the base direction
     DX::XMVECTOR rotatedDirection = XMVector3TransformNormal(baseDirection, rotMatrix);
+    return rotatedDirection;
+}
 
-    // Store direction in buffer (negated for shader convention if needed)
-    DX::XMFLOAT3 finalDir;
-    XMStoreFloat3(&finalDir, rotatedDirection);
-    return DX::XMFLOAT4(finalDir.x, finalDir.y, finalDir.z, 0.0f);
+void DirectionalLight::initializeViewProjectionMatrix(Renderer& renderer)
+{
+    DX::XMVECTOR direction = DX::XMVector3Normalize(m_DirectionalLightData.direction);
+
+    // Choose a position high up and back, relative to the scene center
+    DX::XMVECTOR lightPos = DX::XMVectorSet(0, 0, 0, 0); // origo
+    DX::XMVECTOR lightTarget = direction;
+    DX::XMVECTOR upDir = DX::XMVectorSet(0, 1, 0, 0); // world up
+
+    m_lightViewMatrix = DX::XMMatrixLookAtLH(lightPos, lightTarget, upDir);
+    m_lightProjectionMatrix = DX::XMMatrixOrthographicLH(50.0f, 50.0f, 1.0f, 100.0f); // near / far
 }
 
 void DirectionalLight::createConstantBuffer(Renderer& renderer)
@@ -104,13 +114,6 @@ void DirectionalLight::initializeShadowMap(Renderer& renderer)
     renderer.getDevice()->CreateShaderResourceView(shadowTexture, &srvDesc, &m_shadowSRV);
 
     shadowTexture->Release();
-
-    // Setup light matrices (directional light example)
-    DX::XMVECTOR lightPos = DX::XMVectorSet(0, 20, -20, 1.0f);
-    DX::XMVECTOR lightTarget = DX::XMVectorZero();
-    DX::XMVECTOR upDir = DX::XMVectorSet(0, 1, 0, 0);
-    m_lightViewMatrix = DX::XMMatrixLookAtLH(lightPos, lightTarget, upDir);
-    m_lightProjectionMatrix = DX::XMMatrixOrthographicLH(50.0f, 50.0f, 1.0f, 100.0f); // Or use XMMatrixPerspectiveFovLH
 }
 
 void DirectionalLight::renderBeginShadowMap(Renderer& renderer)
