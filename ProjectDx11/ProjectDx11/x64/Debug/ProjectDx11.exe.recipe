@@ -10,6 +10,9 @@
       <FullPath>C:\Users\jespe\Documents\GitHub\ProjectDx11\ProjectDx11\ProjectDx11\PixelShader.cso</FullPath>
     </ContentFile>
     <ContentFile>
+      <FullPath>C:\Users\jespe\Documents\GitHub\ProjectDx11\ProjectDx11\ProjectDx11\ShadowVertexShader.cso</FullPath>
+    </ContentFile>
+    <ContentFile>
       <FullPath>C:\Users\jespe\Documents\GitHub\ProjectDx11\ProjectDx11\ProjectDx11\VertexShader.cso</FullPath>
     </ContentFile>
   </ContentFiles>

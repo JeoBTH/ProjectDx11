@@ -34,4 +34,5 @@ public:
 	~Mesh();
 
 	void draw(Renderer& renderer);
+	void drawShadows(Renderer& renderer);
 };

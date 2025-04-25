@@ -10,6 +10,10 @@ Renderer::Renderer(Window& window)
 	createRenderTarget();
 	createShaders();
 	createDepthStencil();
+
+	//Shadow
+	createShadowShaders();
+	createShadowBuffer();
 }
 
 Renderer::~Renderer()
@@ -45,8 +49,8 @@ void Renderer::beginFrame()
 	m_deviceContext->OMSetRenderTargets(1, &m_renderTargetView, m_depthStencilView);
 
 	// Set viewport
-	auto viewport = CD3D11_VIEWPORT(0.f, 0.f, (float)m_backBufferDesc.Width, (float)m_backBufferDesc.Height);
-	m_deviceContext->RSSetViewports(1, &viewport);
+	m_defaultViewport = CD3D11_VIEWPORT(0.f, 0.f, (float)m_backBufferDesc.Width, (float)m_backBufferDesc.Height);
+	m_deviceContext->RSSetViewports(1, &m_defaultViewport);
 
 
 	// Set the background color!
@@ -124,6 +128,71 @@ void Renderer::createShaders()
 	};
 
 	getDevice()->CreateInputLayout(layout, 3, vsData.data(), vsData.size(), &m_inputLayout);
+}
+
+void Renderer::createShadowShaders()
+{
+	// Load and create Shadow Vertex Shader
+	ifstream shadowVsFile("ShadowVertexShader.cso", ios::binary);
+	vector<char> shadowVsData = { istreambuf_iterator<char>(shadowVsFile), istreambuf_iterator<char>() };
+
+	getDevice()->CreateVertexShader(shadowVsData.data(), shadowVsData.size(), nullptr, &m_shadowVertexShader);
+
+	// Create a basic input layout for position only
+	D3D11_INPUT_ELEMENT_DESC shadowLayout[] =
+	{
+		{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 }
+	};
+
+	getDevice()->CreateInputLayout(shadowLayout, 1, shadowVsData.data(), shadowVsData.size(), &m_shadowInputLayout);
+}
+
+void Renderer::createShadowBuffer()
+{
+	D3D11_BUFFER_DESC cbd{};
+	cbd.Usage = D3D11_USAGE_DYNAMIC;
+	cbd.ByteWidth = sizeof(ShadowMatrixBuffer);
+	cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	getDevice()->CreateBuffer(&cbd, nullptr, &m_shadowMatrixBuffer);
+}
+
+void Renderer::setShadowViewProj(DX::XMMATRIX view, DX::XMMATRIX proj)
+{
+	ShadowMatrixBuffer buffer;
+	buffer.lightViewProj = XMMatrixTranspose(view * proj);
+
+	D3D11_MAPPED_SUBRESOURCE mappedResource;
+	getDeviceContext()->Map(m_shadowMatrixBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+	memcpy(mappedResource.pData, &buffer, sizeof(buffer));
+	getDeviceContext()->Unmap(m_shadowMatrixBuffer, 0);
+
+	getDeviceContext()->VSSetConstantBuffers(3, 1, &m_shadowMatrixBuffer); // Assuming register(b3)
+}
+
+void Renderer::useShadowShaders()
+{
+	getDeviceContext()->IASetInputLayout(m_shadowInputLayout);
+	getDeviceContext()->VSSetShader(m_shadowVertexShader, nullptr, 0);
+	getDeviceContext()->PSSetShader(nullptr, nullptr, 0); // No pixel shader for depth-only rendering
+}
+
+void Renderer::setShadowViewport(float width, float height)
+{
+	D3D11_VIEWPORT shadowViewport = {};
+	shadowViewport.TopLeftX = 0;
+	shadowViewport.TopLeftY = 0;
+	shadowViewport.Width = width;
+	shadowViewport.Height = height;
+	shadowViewport.MinDepth = 0.0f;
+	shadowViewport.MaxDepth = 1.0f;
+
+	getDeviceContext()->RSSetViewports(1, &shadowViewport);
+}
+
+void Renderer::restoreViewport()
+{
+	getDeviceContext()->RSSetViewports(1, &m_defaultViewport);
 }
 
 void Renderer::setPipelineState()

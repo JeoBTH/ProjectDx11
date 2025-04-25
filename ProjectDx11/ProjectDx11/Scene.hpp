@@ -23,11 +23,12 @@ public:
 
 	void addGameObject(GameObject* gameObject);
 	void clearGameObjects();
+	const vector<GameObject*>& getGameObjects() const;
 
 	void addLight(Light* light);
 	void clearLights();
 
-	void setInputHandler(InputHandler* handler) { inputHandler = handler; } // Setter for input
+	void setInputHandler(InputHandler* handler) { inputHandler = handler; }
 
 	Camera& getCamera();
 

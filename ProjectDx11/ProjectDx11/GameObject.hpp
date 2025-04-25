@@ -33,5 +33,6 @@ public:
 
 	void update(Renderer& renderer);
 	void draw(Renderer& renderer);
+	void drawShadows(Renderer& renderer);
 
 };

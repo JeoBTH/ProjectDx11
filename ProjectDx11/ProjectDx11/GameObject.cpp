@@ -89,6 +89,16 @@ void GameObject::draw(Renderer& renderer)
 	}
 }
 
+void GameObject::drawShadows(Renderer& renderer)
+{
+	renderer.getDeviceContext()->VSSetConstantBuffers(0, 1, &m_constantBuffer); // Bind the constant buffer to the vertex shader (register b0)
+
+	if (mesh != nullptr)
+	{
+		mesh->drawShadows(renderer);
+	}
+}
+
 void GameObject::createConstantBuffer(Renderer& renderer)
 {
 	D3D11_BUFFER_DESC cbDesc = {};

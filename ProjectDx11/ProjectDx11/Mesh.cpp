@@ -110,6 +110,23 @@ void Mesh::draw(Renderer& renderer)
 	renderer.getDeviceContext()->DrawIndexed(static_cast<UINT>(m_indices.size()), 0, 0); // 6: The number of indices in my index buffer.
 }
 
+void Mesh::drawShadows(Renderer& renderer)
+{
+	// Bind Vertex Buffer
+	renderer.getDeviceContext()->IASetVertexBuffers(0, 1, &m_vertexBuffer, &m_stride, &m_offset);
+
+	// Bind Index Buffer
+	renderer.getDeviceContext()->IASetIndexBuffer(m_indexBuffer, DXGI_FORMAT_R32_UINT, 0);
+
+	// Set primitive topology
+	renderer.getDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+	// Do NOT bind textures or samplers — only geometry matters for depth
+
+	// Draw the geometry
+	renderer.getDeviceContext()->DrawIndexed(static_cast<UINT>(m_indices.size()), 0, 0);
+}
+
 
 void Mesh::loadTexture(Renderer& renderer, const string& texturePath)
 {
