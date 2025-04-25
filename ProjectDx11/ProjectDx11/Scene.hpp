@@ -4,6 +4,7 @@
 #include "GameObject.hpp"
 #include "AmbientLight.hpp"
 #include "PointLight.hpp"
+#include "DirectionalLight.hpp"
 
 #include "Camera.hpp"
 #include "PhongMaterial.hpp"

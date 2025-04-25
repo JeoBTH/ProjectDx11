@@ -21,6 +21,9 @@ Game::Game(Renderer& renderer, Window& window)
 	Light* pointLight = new PointLight(renderer);
 	scene.addLight(pointLight);
 
+	Light* directionalLight = new DirectionalLight(renderer);
+	scene.addLight(directionalLight);
+
 	PhongMaterial* phongMaterial = new PhongMaterial(renderer);
 	scene.addMaterial(phongMaterial);
 

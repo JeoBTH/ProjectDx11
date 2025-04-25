@@ -18,10 +18,18 @@ cbuffer PointLightBuffer : register(b2)
     float4 pointLightColor;                 // Point light color                    16
     float pointLightIntensity;              //                                      4
     float pointLightRange;                  // --------> Not in use yet             4
-    float2 padding;
+    float2 padding1;
 }
 
-cbuffer MaterialBuffer : register(b3)
+cbuffer DirectionalLightBuffer : register(b3)
+{
+    float4 directionalLightPos;             // Point light position (world space)   16
+    float4 directionalLightColor;           // Point light color                    16
+    float directionalLightIntensity;        //                                      4
+    float3 padding2;
+}
+
+cbuffer MaterialBuffer : register(b4)
 {
     float4 specularColor; // Specular light color
     float specularIntensity; // Specular intensity (Ks)
@@ -48,7 +56,15 @@ float4 main(Input input) : SV_TARGET
 
     float diffuseFactor = max(dot(input.normal.xyz, lightDirection), 0) * attenuation;
     
-    float4 diffuse = texColor * pointLightColor * diffuseFactor * pointLightIntensity;
+    float4 pointDiffuse = texColor * pointLightColor * diffuseFactor * pointLightIntensity;
+    
+     // Directional Light Diffuse (treat pos as direction)
+    float3 directionalDir = normalize(-directionalLightPos.xyz); // Negate if you want light *towards* surface
+    float NdotL_dir = max(dot(input.normal, directionalDir), 0.0f);
+    float4 directionalDiffuse = texColor * directionalLightColor * directionalLightIntensity * NdotL_dir;
+
+    // Combine Diffuse
+    float4 diffuse = pointDiffuse + directionalDiffuse;
     
     // Specular Lighting
     float3 viewDir = normalize(input.cameraPosition.xyz - input.worldPos.xyz);

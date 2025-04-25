@@ -36,5 +36,5 @@ void PhongMaterial::update(Renderer& renderer)
     memcpy(mapped.pData, &m_data, sizeof(MaterialBuffer));
     renderer.getDeviceContext()->Unmap(m_materialBuffer, 0);
 
-    renderer.getDeviceContext()->PSSetConstantBuffers(3, 1, &m_materialBuffer); // slot 3
+    renderer.getDeviceContext()->PSSetConstantBuffers(4, 1, &m_materialBuffer); // slot 4
 }
