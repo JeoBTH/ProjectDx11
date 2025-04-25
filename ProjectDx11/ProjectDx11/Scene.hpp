@@ -2,7 +2,9 @@
 #include <vector>
 #include "Renderer.hpp"
 #include "GameObject.hpp"
-#include "Light.hpp"
+#include "AmbientLight.hpp"
+#include "PointLight.hpp"
+
 #include "Camera.hpp"
 #include "PhongMaterial.hpp"
 

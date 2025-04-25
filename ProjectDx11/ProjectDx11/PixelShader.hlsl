@@ -7,15 +7,18 @@ struct Input
     float3 cameraPosition : CPOS;
 };
 
-cbuffer LightBuffer : register(b1)
+cbuffer AmbientLightBuffer : register(b1)
 {
     float4 ambientColor;                    // Ambient light color                  16
-    
+}
+
+cbuffer PointLightBuffer : register(b2)
+{
     float4 pointLightPos;                   // Point light position (world space)   16
     float4 pointLightColor;                 // Point light color                    16
     float pointLightIntensity;              //                                      4
     float pointLightRange;                  // --------> Not in use yet             4
-    float2 padding;                         // padding                              8
+    float2 padding;
 }
 
 cbuffer MaterialBuffer : register(b3)
@@ -57,6 +60,7 @@ float4 main(Input input) : SV_TARGET
     float4 specular = specularColor * specFactor;
 
     return (ambient + diffuse) + specular;
+    //return ambient;
     //return float4(input.uv, 0.0f, 1.0f); // visualize UVs
     //return texture0.Sample(samplerState, input.uv);
 }

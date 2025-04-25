@@ -15,8 +15,11 @@ Game::Game(Renderer& renderer, Window& window)
 	GameObject* landscape = new GameObject(renderer,"Landscape.obj", "T_BTH_D.png");
 	scene.addGameObject(landscape);
 
-	Light* light = new Light(renderer);
-	scene.addLight(light);
+	Light* ambientLight = new AmbientLight(renderer);
+	scene.addLight(ambientLight);
+
+	Light* pointLight = new PointLight(renderer);
+	scene.addLight(pointLight);
 
 	PhongMaterial* phongMaterial = new PhongMaterial(renderer);
 	scene.addMaterial(phongMaterial);

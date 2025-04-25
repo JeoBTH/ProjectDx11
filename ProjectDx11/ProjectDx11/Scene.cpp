@@ -105,17 +105,17 @@ void Scene::update(Renderer& renderer)
 void Scene::draw(Renderer& renderer)
 {
 	// Shadow Pass
-	for (auto* light : m_lights) 
-	{
-		light->renderBeginShadowMap(renderer);
+	//for (auto* light : m_lights) 
+	//{
+	//	light->renderBeginShadowMap(renderer);
 
-		for (auto* gameObjects : m_gameObjects)
-		{
-			gameObjects->drawShadows(renderer);
-		}
+	//	for (auto* gameObjects : m_gameObjects)
+	//	{
+	//		gameObjects->drawShadows(renderer);
+	//	}
 
-		light->renderEndShadowMap(renderer);
-	}
+	//	light->renderEndShadowMap(renderer);
+	//}
 
 	// Main Pass
 	for (auto* gameObjects : m_gameObjects)
