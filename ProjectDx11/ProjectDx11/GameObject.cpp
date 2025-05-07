@@ -79,13 +79,13 @@ void GameObject::update(Renderer& renderer)
 	renderer.getDeviceContext()->Unmap(m_constantBuffer, 0);
 }
 
-void GameObject::draw(Renderer& renderer)
+void GameObject::draw(Renderer& renderer, ID3D11ShaderResourceView* shadowMapSRV)
 {
 	renderer.getDeviceContext()->VSSetConstantBuffers(0, 1, &m_constantBuffer); // Bind the constant buffer to the vertex shader (register b0)
 
 	if (mesh != nullptr)
 	{
-		mesh->draw(renderer);
+		mesh->draw(renderer, shadowMapSRV);
 	}
 }
 

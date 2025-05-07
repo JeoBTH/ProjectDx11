@@ -5,6 +5,7 @@ struct Input
     float2 uv : TEXCOORD;
     float4 worldPos : WPOS;
     float3 cameraPosition : CPOS;
+    float4 lightSpacePos : TEXCOORD1;
 };
 
 cbuffer AmbientLightBuffer : register(b1)
@@ -37,6 +38,22 @@ cbuffer MaterialBuffer : register(b4)
 
 Texture2D texture0 : register(t0); // Bind the texture to slot t0
 SamplerState samplerState : register(s0); // Bind the sampler to slot s0
+
+Texture2D shadowMap : register(t1);
+SamplerComparisonState shadowSampler : register(s1);
+
+float ComputeShadow(float4 lightSpacePos)
+{
+    // Transform to NDC space [-1,1] -> [0,1]
+    float3 projCoords = lightSpacePos.xyz / lightSpacePos.w;
+    projCoords = projCoords * 0.5f + 0.5f;
+
+    projCoords = saturate(projCoords);
+
+    // Compare with depth in shadow map
+    float shadow = shadowMap.SampleCmpLevelZero(shadowSampler, projCoords.xy, projCoords.z - 0.005f); // Add small bias
+    return shadow;
+}
 
 float4 main(Input input) : SV_TARGET
 {
@@ -74,8 +91,9 @@ float4 main(Input input) : SV_TARGET
     float specFactor = pow(cosDelta, shininess) * specularIntensity * attenuation;
     float4 specular = specularColor * specFactor;
 
-    return (ambient + diffuse) + specular;
-    //return ambient;
-    //return float4(input.uv, 0.0f, 1.0f); // visualize UVs
-    //return texture0.Sample(samplerState, input.uv);
+    // Shadows
+    float shadowFactor = ComputeShadow(input.lightSpacePos); // from vertex shader
+    float4 shadowedDirectionalDiffuse = directionalDiffuse * shadowFactor;
+ 
+    return (ambient + diffuse) + specular + shadowedDirectionalDiffuse;
 }

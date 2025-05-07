@@ -33,6 +33,6 @@ public:
 	Mesh(Renderer& renderer, const string& objPath, const string& texturePath = "T_CubeTest_D.png");
 	~Mesh();
 
-	void draw(Renderer& renderer);
+	void draw(Renderer& renderer, ID3D11ShaderResourceView* shadowMapSRV = nullptr);
 	void drawShadows(Renderer& renderer);
 };

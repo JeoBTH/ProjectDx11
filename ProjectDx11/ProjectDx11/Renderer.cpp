@@ -14,6 +14,7 @@ Renderer::Renderer(Window& window)
 	//Shadow
 	createShadowShaders();
 	createShadowBuffer();
+	createShadowSampler();
 }
 
 Renderer::~Renderer()
@@ -167,7 +168,7 @@ void Renderer::setShadowViewProj(DX::XMMATRIX view, DX::XMMATRIX proj)
 	memcpy(mappedResource.pData, &buffer, sizeof(buffer));
 	getDeviceContext()->Unmap(m_shadowMatrixBuffer, 0);
 
-	getDeviceContext()->VSSetConstantBuffers(3, 1, &m_shadowMatrixBuffer); // Assuming register(b3)
+	getDeviceContext()->VSSetConstantBuffers(3, 1, &m_shadowMatrixBuffer); // register(b3) in ShadowVertexShader
 }
 
 void Renderer::useShadowShaders()
@@ -176,6 +177,33 @@ void Renderer::useShadowShaders()
 	getDeviceContext()->VSSetShader(m_shadowVertexShader, nullptr, 0);
 	getDeviceContext()->PSSetShader(nullptr, nullptr, 0); // No pixel shader for depth-only rendering
 }
+
+void Renderer::bindShadowMatrixForMainPass()
+{
+	getDeviceContext()->VSSetConstantBuffers(5, 1, &m_shadowMatrixBuffer); // register(b5) in VertexShader
+}
+
+void Renderer::createShadowSampler()
+{
+	
+	D3D11_SAMPLER_DESC shadowSamplerDesc = {};
+	shadowSamplerDesc.Filter = D3D11_FILTER_COMPARISON_MIN_MAG_MIP_LINEAR;
+	shadowSamplerDesc.AddressU = D3D11_TEXTURE_ADDRESS_CLAMP;
+	shadowSamplerDesc.AddressV = D3D11_TEXTURE_ADDRESS_CLAMP;
+	shadowSamplerDesc.AddressW = D3D11_TEXTURE_ADDRESS_CLAMP;
+	shadowSamplerDesc.ComparisonFunc = D3D11_COMPARISON_LESS;
+	shadowSamplerDesc.MinLOD = 0;
+	shadowSamplerDesc.MaxLOD = D3D11_FLOAT32_MAX;
+
+	getDevice()->CreateSamplerState(&shadowSamplerDesc, &m_shadowSamplerState);
+	
+}
+
+ID3D11SamplerState* Renderer::getShadowSampler()
+{
+	return m_shadowSamplerState;
+}
+
 
 void Renderer::setShadowViewport(float width, float height)
 {

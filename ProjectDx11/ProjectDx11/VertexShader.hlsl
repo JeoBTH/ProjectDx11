@@ -12,6 +12,7 @@ struct Output
     float2 uv : TEXCOORD;
     float4 worldPos : WPOS;
     float3 cameraPosition : CPOS;
+    float4 lightSpacePos : TEXCOORD1; 
 };
 
 cbuffer TransformBuffer : register(b0)
@@ -25,6 +26,11 @@ cbuffer CameraBuffer : register(b2)
     float3 cameraPosition;
 };
 
+cbuffer ShadowViewProjection : register(b5)
+{
+    float4x4 lightViewProj;
+};
+
 Output main(Input input)
 {
     Output output;
@@ -35,6 +41,9 @@ Output main(Input input)
     output.normal = normalize(mul(input.normal, (float3x3) worldMatrix));
     output.uv = input.uv; // Pass UV to the pixel shader
     output.cameraPosition = cameraPosition.xyz;
+    
+    // Shadow sampling
+    output.lightSpacePos = mul(worldposition, lightViewProj);
     
     return output;
 }

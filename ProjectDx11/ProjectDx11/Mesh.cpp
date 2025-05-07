@@ -4,6 +4,7 @@
 #include "stb-master/stb_image.h"
 #define TINYOBJLOADER_IMPLEMENTATION
 #include "tinyobjloader-release/tiny_obj_loader.h"
+#include "DirectionalLight.hpp"
 
 
 Mesh::Mesh(Renderer& renderer, const string& objPath, const string& texturePath)
@@ -11,7 +12,6 @@ Mesh::Mesh(Renderer& renderer, const string& objPath, const string& texturePath)
 	loadFromOBJ(objPath);
 	createBuffers(renderer);
 	loadTexture(renderer, texturePath);
-
 }
 
 Mesh::~Mesh()
@@ -91,7 +91,7 @@ void Mesh::loadFromOBJ(const std::string& path)
 }
 
 
-void Mesh::draw(Renderer& renderer)
+void Mesh::draw(Renderer& renderer, ID3D11ShaderResourceView* shadowMapSRV)
 {
 	// Bind our Vertex Buffer 
 	renderer.getDeviceContext()->IASetVertexBuffers(0, 1, &m_vertexBuffer, &m_stride, &m_offset); // why pointers, because you can set two buffers, then you'd have an array of offet[] = [0,0}; which is automatically treated as a pointer when passed through. Single / Due support
@@ -103,8 +103,16 @@ void Mesh::draw(Renderer& renderer)
 	renderer.getDeviceContext()->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST); // The other alternative is D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP, read up on that
 
 	// Bind the texture and sampler state
-	renderer.getDeviceContext()->PSSetShaderResources(0, 1, &m_textureView); // Bind the texture
-	renderer.getDeviceContext()->PSSetSamplers(0, 1, &m_samplerState);       // Bind the sampler
+	renderer.getDeviceContext()->PSSetShaderResources(0, 1, &m_textureView); // Bind the texture t0
+	renderer.getDeviceContext()->PSSetSamplers(0, 1, &m_samplerState);       // Bind the sampler s0
+
+	// Bind Shadow Sampler & SRV
+	if (shadowMapSRV!= nullptr)
+	{
+		renderer.getDeviceContext()->PSSetShaderResources(1, 1, &shadowMapSRV);  // t1
+		ID3D11SamplerState* shadowSampler = renderer.getShadowSampler();
+		renderer.getDeviceContext()->PSSetSamplers(1, 1, &shadowSampler); // s1
+	}
 
 	// Draw
 	renderer.getDeviceContext()->DrawIndexed(static_cast<UINT>(m_indices.size()), 0, 0); // 6: The number of indices in my index buffer.
@@ -193,5 +201,3 @@ void Mesh::loadTexture(Renderer& renderer, const string& texturePath)
 	// Release resources after use
 	if (texture) texture->Release();
 }
-
-

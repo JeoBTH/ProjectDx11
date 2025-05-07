@@ -34,7 +34,7 @@ DX::XMVECTOR DirectionalLight::degreesToDirection(float rotationX, float rotatio
 
     // Rotate the base direction
     DX::XMVECTOR rotatedDirection = XMVector3TransformNormal(baseDirection, rotMatrix);
-    return rotatedDirection;
+    return DX::XMVector3Normalize(rotatedDirection);
 }
 
 void DirectionalLight::initializeViewProjectionMatrix(Renderer& renderer)
@@ -42,7 +42,7 @@ void DirectionalLight::initializeViewProjectionMatrix(Renderer& renderer)
     DX::XMVECTOR direction = DX::XMVector3Normalize(m_DirectionalLightData.direction);
 
     // Choose a position high up and back, relative to the scene center
-    DX::XMVECTOR lightPos = DX::XMVectorSet(0, 0, 0, 0); // origo
+    DX::XMVECTOR lightPos = DX::XMVectorSet(8, 8, 0, 0); // origo
     DX::XMVECTOR lightTarget = direction;
     DX::XMVECTOR upDir = DX::XMVectorSet(0, 1, 0, 0); // world up
 
@@ -154,8 +154,11 @@ void DirectionalLight::renderEndShadowMap(Renderer& renderer)
 
     // Restore the main shaders
     renderer.setPipelineState();
+    renderer.bindShadowMatrixForMainPass();
+
 
     // Release references
     m_oldRTV->Release();
     m_oldDSV->Release();
 }
+

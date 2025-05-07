@@ -102,6 +102,8 @@ void Scene::update(Renderer& renderer)
 
 void Scene::draw(Renderer& renderer)
 {
+	ID3D11ShaderResourceView* shadowMapSRV = nullptr;
+
 	// Shadow Pass
 	for (auto* light : m_lights) 
 	{
@@ -115,12 +117,13 @@ void Scene::draw(Renderer& renderer)
 			}
 
 			dirLight->renderEndShadowMap(renderer);
+			shadowMapSRV = dirLight->getShadowMapSRV();;
 		}
 	}
 
 	// Main Pass
 	for (auto* gameObjects : m_gameObjects)
 	{
-		gameObjects->draw(renderer);
+		gameObjects->draw(renderer, shadowMapSRV);
 	}
 }

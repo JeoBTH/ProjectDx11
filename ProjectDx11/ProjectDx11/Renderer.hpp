@@ -43,6 +43,8 @@ private:
 	ID3D11Buffer* m_shadowMatrixBuffer = nullptr;
 	void createShadowBuffer();
 
+	ID3D11SamplerState* m_shadowSamplerState = nullptr;
+
 	D3D11_VIEWPORT m_defaultViewport = {};
 
 public:
@@ -61,6 +63,9 @@ public:
 	// Shadow
 	void setShadowViewProj(DX::XMMATRIX viewMatrix, DX::XMMATRIX projMatrix);
 	void useShadowShaders();
+	void bindShadowMatrixForMainPass();
+	void createShadowSampler();
+	ID3D11SamplerState* getShadowSampler();
 
 	void setShadowViewport(float width, float height);
 	void restoreViewport();

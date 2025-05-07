@@ -1,9 +1,9 @@
-struct VSInput
+struct Input
 {
     float3 pos : POSITION;
 };
 
-struct VSOutput
+struct Output
 {
     float4 pos : SV_Position;
 };
@@ -13,9 +13,9 @@ cbuffer ShadowViewProjection : register(b3)
     float4x4 lightViewProj;
 };
 
-VSOutput main(VSInput input)
+Output main(Input input)
 {
-    VSOutput output;
+    Output output;
     output.pos = mul(float4(input.pos, 1.0f), lightViewProj);
     return output;
 }
