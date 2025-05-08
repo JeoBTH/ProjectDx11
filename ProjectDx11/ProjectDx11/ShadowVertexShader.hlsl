@@ -8,6 +8,11 @@ struct Output
     float4 pos : SV_Position;
 };
 
+cbuffer TransformBuffer : register(b0)
+{
+    float4x4 worldMatrix;
+};
+
 cbuffer ShadowViewProjection : register(b3)
 {
     float4x4 lightViewProj;
@@ -16,6 +21,7 @@ cbuffer ShadowViewProjection : register(b3)
 Output main(Input input)
 {
     Output output;
-    output.pos = mul(float4(input.pos, 1.0f), lightViewProj);
+    float4 worldposition = mul(float4(input.pos, 1.0f), worldMatrix);
+    output.pos = mul(worldposition, lightViewProj);
     return output;
 }

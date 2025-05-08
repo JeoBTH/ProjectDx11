@@ -117,7 +117,7 @@ void Scene::draw(Renderer& renderer)
 			}
 
 			dirLight->renderEndShadowMap(renderer);
-			shadowMapSRV = dirLight->getShadowMapSRV();;
+			shadowMapSRV = dirLight->getShadowMapSRV();
 		}
 	}
 

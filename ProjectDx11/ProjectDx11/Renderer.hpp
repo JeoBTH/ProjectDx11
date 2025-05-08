@@ -39,7 +39,8 @@ private:
 	struct ShadowMatrixBuffer
 	{
 		DX::XMMATRIX lightViewProj;
-	};
+	}m_LightViewBuffer;
+
 	ID3D11Buffer* m_shadowMatrixBuffer = nullptr;
 	void createShadowBuffer();
 
@@ -61,13 +62,12 @@ public:
 	void endFrame();
 
 	// Shadow
-	void setShadowViewProj(DX::XMMATRIX viewMatrix, DX::XMMATRIX projMatrix);
+	void setShadowViewProj(DX::XMMATRIX lightViewMatrix, DX::XMMATRIX lightProjectionMatrix);
 	void useShadowShaders();
 	void bindShadowMatrixForMainPass();
 	void createShadowSampler();
 	ID3D11SamplerState* getShadowSampler();
 
-	void setShadowViewport(float width, float height);
 	void restoreViewport();
 };
 

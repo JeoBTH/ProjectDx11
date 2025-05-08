@@ -150,24 +150,27 @@ void Renderer::createShadowShaders()
 
 void Renderer::createShadowBuffer()
 {
-	D3D11_BUFFER_DESC cbd{};
-	cbd.Usage = D3D11_USAGE_DYNAMIC;
-	cbd.ByteWidth = sizeof(ShadowMatrixBuffer);
-	cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-	cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-	getDevice()->CreateBuffer(&cbd, nullptr, &m_shadowMatrixBuffer);
+	D3D11_BUFFER_DESC cbDesc{};
+	cbDesc.ByteWidth = sizeof(m_shadowMatrixBuffer);
+	cbDesc.Usage = D3D11_USAGE_DYNAMIC;
+	cbDesc.ByteWidth = sizeof(ShadowMatrixBuffer);
+	cbDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	cbDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+
+	getDevice()->CreateBuffer(&cbDesc, nullptr, &m_shadowMatrixBuffer);
 }
 
-void Renderer::setShadowViewProj(DX::XMMATRIX view, DX::XMMATRIX proj)
+void Renderer::setShadowViewProj(DX::XMMATRIX lightViewMatrix, DX::XMMATRIX lightProjectionMatrix)
 {
-	ShadowMatrixBuffer buffer;
-	buffer.lightViewProj = XMMatrixTranspose(view * proj);
+	DX::XMMATRIX lightViewProjectionMatrix = lightViewMatrix * lightProjectionMatrix;
+	m_LightViewBuffer.lightViewProj = DX::XMMatrixTranspose(lightViewProjectionMatrix);
 
 	D3D11_MAPPED_SUBRESOURCE mappedResource;
 	getDeviceContext()->Map(m_shadowMatrixBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
-	memcpy(mappedResource.pData, &buffer, sizeof(buffer));
-	getDeviceContext()->Unmap(m_shadowMatrixBuffer, 0);
 
+	memcpy(mappedResource.pData, &m_LightViewBuffer, sizeof(m_LightViewBuffer));
+
+	getDeviceContext()->Unmap(m_shadowMatrixBuffer, 0);
 	getDeviceContext()->VSSetConstantBuffers(3, 1, &m_shadowMatrixBuffer); // register(b3) in ShadowVertexShader
 }
 
@@ -202,20 +205,6 @@ void Renderer::createShadowSampler()
 ID3D11SamplerState* Renderer::getShadowSampler()
 {
 	return m_shadowSamplerState;
-}
-
-
-void Renderer::setShadowViewport(float width, float height)
-{
-	D3D11_VIEWPORT shadowViewport = {};
-	shadowViewport.TopLeftX = 0;
-	shadowViewport.TopLeftY = 0;
-	shadowViewport.Width = width;
-	shadowViewport.Height = height;
-	shadowViewport.MinDepth = 0.0f;
-	shadowViewport.MaxDepth = 1.0f;
-
-	getDeviceContext()->RSSetViewports(1, &shadowViewport);
 }
 
 void Renderer::restoreViewport()

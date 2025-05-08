@@ -19,7 +19,7 @@ private:
     void createConstantBuffer(Renderer& renderer) override;
 
 public:
-	PointLight(Renderer& renderer, const DX::XMFLOAT4& position = DX::XMFLOAT4(0.0f, 5.0f, -5.5f, 1.0f),  const DX::XMFLOAT4& color = DX::XMFLOAT4(1.0f, 0.1f, 0.1f, 1.0f), float intensity = 25.0f, float range = 15.0f);
+	PointLight(Renderer& renderer, const DX::XMFLOAT4& position = DX::XMFLOAT4(0.0f, 5.0f, -5.5f, 1.0f),  const DX::XMFLOAT4& color = DX::XMFLOAT4(1.0f, 0.1f, 0.1f, 1.0f), float intensity = 2.0f, float range = 15.0f); // intensity was 25 before dirLight debug
 	~PointLight();
 
     void update(Renderer& renderer) override;

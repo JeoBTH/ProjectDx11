@@ -1,9 +1,7 @@
 #include "InputHandler.hpp"
 
-InputHandler::InputHandler(string name)
+InputHandler::InputHandler()
 {
-    this->name = name;
-
     for (int i = 0; i < KEY_COUNT; ++i)
     {
         currentKeyState[i] = false;

@@ -18,17 +18,20 @@ private:
 	DX::XMMATRIX m_rotationMatrix;
 	DX::XMMATRIX m_scalingMatrix;
 
-	ID3D11Buffer* m_constantBuffer = nullptr;
+	ID3D11Buffer* m_transformBuffer = nullptr;
 	void createConstantBuffer(Renderer& renderer);
 
 	Mesh* mesh = nullptr;
+
+	float m_RotationRateY = 0;
+	void rotateAlongY();
 
 public:
 	GameObject(Renderer& renderer, const string& objPath = "", const string& texturePath = "");
 	~GameObject();
 
 	void translate(float x = 0.0f, float y = 0.0f, float z = 0.0f);
-	void rotateAlongY(float rate);
+	void setRotateAlongY(float rate);
 	void scale(float x = 1.0f, float y = 1.0f, float z = 1.0f);
 
 	void update(Renderer& renderer);

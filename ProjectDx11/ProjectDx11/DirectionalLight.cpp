@@ -39,15 +39,19 @@ DX::XMVECTOR DirectionalLight::degreesToDirection(float rotationX, float rotatio
 
 void DirectionalLight::initializeViewProjectionMatrix(Renderer& renderer)
 {
+
+    DX::XMVECTOR lightPos = DX::XMVectorSet(16, 16, 0, 0);                                        // origo
     DX::XMVECTOR direction = DX::XMVector3Normalize(m_DirectionalLightData.direction);
+    DX::XMVECTOR upDir = DX::XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);                               // Up direction
 
-    // Choose a position high up and back, relative to the scene center
-    DX::XMVECTOR lightPos = DX::XMVectorSet(8, 8, 0, 0); // origo
-    DX::XMVECTOR lightTarget = direction;
-    DX::XMVECTOR upDir = DX::XMVectorSet(0, 1, 0, 0); // world up
+    m_lightViewMatrix = DX::XMMatrixLookAtLH(lightPos, direction, upDir);
 
-    m_lightViewMatrix = DX::XMMatrixLookAtLH(lightPos, lightTarget, upDir);
-    m_lightProjectionMatrix = DX::XMMatrixOrthographicLH(50.0f, 50.0f, 1.0f, 100.0f); // near / far
+    float fov = DX::XMConvertToRadians(45.0f); // Field of View in radians
+    float aspectRatio = 1024.0f / 1024.0f;
+    float nearPlane = 0.1f;   // Minimum visible distance
+    float farPlane = 100.0f; // Maximum visible distance
+
+    m_lightProjectionMatrix = DX::XMMatrixOrthographicLH(fov, aspectRatio, nearPlane, farPlane); // near / far
 }
 
 void DirectionalLight::createConstantBuffer(Renderer& renderer)
@@ -118,20 +122,21 @@ void DirectionalLight::initializeShadowMap(Renderer& renderer)
 
 void DirectionalLight::renderBeginShadowMap(Renderer& renderer)
 {
+    // store main pass rtv and dsv
     renderer.getDeviceContext()->OMGetRenderTargets(1, &m_oldRTV, &m_oldDSV);
 
     // Set shadow map as depth target (no render target)
     renderer.getDeviceContext()->OMSetRenderTargets(0, nullptr, m_shadowDSV);
 
     // Set viewport to shadow map size
-    D3D11_VIEWPORT vp = {};
-    vp.Width = 2048.0f;
-    vp.Height = 2048.0f;
-    vp.MinDepth = 0.0f;
-    vp.MaxDepth = 1.0f;
-    vp.TopLeftX = 0.0f;
-    vp.TopLeftY = 0.0f;
-    renderer.getDeviceContext()->RSSetViewports(1, &vp);
+    D3D11_VIEWPORT shadowViewport = {};
+    shadowViewport.TopLeftX = 0;
+    shadowViewport.TopLeftY = 0;
+    shadowViewport.Width = 1024.0f;
+    shadowViewport.Height = 1024.0f;
+    shadowViewport.MinDepth = 0.0f;
+    shadowViewport.MaxDepth = 1.0f;
+    renderer.getDeviceContext()->RSSetViewports(1, &shadowViewport);
 
     // Clear the shadow map
     renderer.getDeviceContext()->ClearDepthStencilView(m_shadowDSV, D3D11_CLEAR_DEPTH, 1.0f, 0);
@@ -140,8 +145,7 @@ void DirectionalLight::renderBeginShadowMap(Renderer& renderer)
     renderer.useShadowShaders();
 
     // Set light matrices in a constant buffer
-    renderer.setShadowViewProj(getViewMatrix(), getProjectionMatrix());
-    renderer.setShadowViewport(1024.0f, 1024.0f);
+    renderer.setShadowViewProj(m_lightViewMatrix, m_lightProjectionMatrix);
 }
 
 void DirectionalLight::renderEndShadowMap(Renderer& renderer)

@@ -22,11 +22,9 @@ private:
     float deltaY = 0.0f;
 
 public:
-	InputHandler(string name);
+	InputHandler();
 	~InputHandler();
 	void update();
-
-    string name;
 
     bool IsKeyPressed(unsigned char key) const;
     bool IsKeyReleased(unsigned char key) const;

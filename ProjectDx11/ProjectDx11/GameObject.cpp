@@ -27,7 +27,7 @@ GameObject::GameObject(Renderer& renderer, const string& objPath, const string& 
 
 GameObject::~GameObject()
 {
-	m_constantBuffer->Release();
+	m_transformBuffer->Release();
 
 	if (mesh != nullptr)
 	{
@@ -40,7 +40,12 @@ void GameObject::translate(float x, float y, float z)
 	m_translationMatrix = DX::XMMatrixTranslation(x, y, z);
 }
 
-void GameObject::rotateAlongY(float rate)
+void GameObject::setRotateAlongY(float rate)
+{
+	m_RotationRateY = rate;
+}
+
+void GameObject::rotateAlongY()
 {
 	static auto startTime = std::chrono::high_resolution_clock::now();
 	auto currentTime = std::chrono::high_resolution_clock::now();
@@ -52,7 +57,7 @@ void GameObject::rotateAlongY(float rate)
 	float centerY = 0.0f;
 	float centerZ = -1.5f;
 
-	m_rotationMatrix = DX::XMMatrixRotationY(rate * time);
+	m_rotationMatrix = DX::XMMatrixRotationY(m_RotationRateY * time);
 }
 
 void GameObject::scale(float x, float y, float z)
@@ -62,7 +67,9 @@ void GameObject::scale(float x, float y, float z)
 
 void GameObject::update(Renderer& renderer)
 {
-	//rotateAlongY(1.0f);
+
+	rotateAlongY();
+	
 
 	m_worldMatrix = m_rotationMatrix * m_translationMatrix * m_scalingMatrix;
 
@@ -70,18 +77,18 @@ void GameObject::update(Renderer& renderer)
 
 	// Map the constant buffer to access it
 	D3D11_MAPPED_SUBRESOURCE mappedResource = {};
-	renderer.getDeviceContext()->Map(m_constantBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+	renderer.getDeviceContext()->Map(m_transformBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
 
 	// Copy the matrix data into the constant buffer
 	memcpy(mappedResource.pData, &m_tb, sizeof(m_tb));
 
 	// Unmap when done
-	renderer.getDeviceContext()->Unmap(m_constantBuffer, 0);
+	renderer.getDeviceContext()->Unmap(m_transformBuffer, 0);
 }
 
 void GameObject::draw(Renderer& renderer, ID3D11ShaderResourceView* shadowMapSRV)
 {
-	renderer.getDeviceContext()->VSSetConstantBuffers(0, 1, &m_constantBuffer); // Bind the constant buffer to the vertex shader (register b0)
+	renderer.getDeviceContext()->VSSetConstantBuffers(0, 1, &m_transformBuffer); // Bind the constant buffer to the vertex shader (register b0)
 
 	if (mesh != nullptr)
 	{
@@ -91,7 +98,7 @@ void GameObject::draw(Renderer& renderer, ID3D11ShaderResourceView* shadowMapSRV
 
 void GameObject::drawShadows(Renderer& renderer)
 {
-	renderer.getDeviceContext()->VSSetConstantBuffers(0, 1, &m_constantBuffer); // Bind the constant buffer to the vertex shader (register b0)
+	renderer.getDeviceContext()->VSSetConstantBuffers(0, 1, &m_transformBuffer); // Bind the constant buffer to the vertex shader (register b0)
 
 	if (mesh != nullptr)
 	{
@@ -114,5 +121,5 @@ void GameObject::createConstantBuffer(Renderer& renderer)
 	initData.SysMemPitch = 0;
 	initData.SysMemSlicePitch = 0;
 
-	renderer.getDevice()->CreateBuffer(&cbDesc, &initData, &m_constantBuffer);
+	renderer.getDevice()->CreateBuffer(&cbDesc, &initData, &m_transformBuffer);
 }
