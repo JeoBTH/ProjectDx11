@@ -10,11 +10,14 @@ Game::Game(Renderer& renderer, Window& window)
 
 	GameObject* cube = new GameObject(renderer,"Cube.obj", "T_CubeTest_D.png");
 	cube->translate(0.0f, 0.5f, 0.0f);
-	cube->setRotateAlongY(1.0f);
 	scene.addGameObject(cube);
 
+	GameObject* cube2 = new GameObject(renderer, "Cube.obj", "T_CubeTest_D.png");
+	cube2->translate(5.0f, 0.5f, 0.0f);
+	cube2->setRotateAlongY(0.1f);
+	scene.addGameObject(cube2);
+
 	GameObject* landscape = new GameObject(renderer,"Landscape.obj", "T_BTH_D.png");
-	//landscape->setRotateAlongY(0.1f);
 	scene.addGameObject(landscape);
 
 	Light* ambientLight = new AmbientLight(renderer);

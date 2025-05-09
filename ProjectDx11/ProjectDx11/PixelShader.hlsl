@@ -54,7 +54,7 @@ float ComputeShadow(float4 lightSpacePos)
     
     float3 texCoords = ndcSpace;
 
-    // If outside shadow map bounds, not in shadow
+    // Check to see if outside shadow map bounds
     if (texCoords.x < 0.0f || texCoords.x > 1.0f ||
         texCoords.y < 0.0f || texCoords.y > 1.0f)
     {
@@ -112,10 +112,6 @@ float4 main(Input input) : SV_TARGET
     // Shadows
     float shadowFactor = ComputeShadow(input.lightSpacePos); // from vertex shader
     float4 shadowedDirectionalDiffuse = directionalDiffuse * shadowFactor;
- 
-    //return float4(input.lightSpacePos.xyz / input.lightSpacePos.w, 1);
-    //return float4(shadowFactor.xxx, 1.0f);
-    //return float4(shadowFactor.xxx, 1.0f); // Bright = lit, Black = shadow
     
     return ambient + (diffuse + specular + shadowedDirectionalDiffuse) * shadowFactor;
 }
