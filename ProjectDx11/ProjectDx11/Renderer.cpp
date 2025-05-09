@@ -160,7 +160,7 @@ void Renderer::createShadowBuffer()
 	getDevice()->CreateBuffer(&cbDesc, nullptr, &m_shadowMatrixBuffer);
 }
 
-void Renderer::setShadowViewProj(DX::XMMATRIX lightViewMatrix, DX::XMMATRIX lightProjectionMatrix)
+void Renderer::bindLightViewBuffer(DX::XMMATRIX lightViewMatrix, DX::XMMATRIX lightProjectionMatrix)
 {
 	DX::XMMATRIX lightViewProjectionMatrix = lightViewMatrix * lightProjectionMatrix;
 	m_LightViewBuffer.lightViewProj = DX::XMMatrixTranspose(lightViewProjectionMatrix);

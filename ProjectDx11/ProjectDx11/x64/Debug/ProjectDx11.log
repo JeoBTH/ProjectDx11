@@ -1,17 +1,4 @@
-﻿  AmbientLight.cpp
-  Application.cpp
-  Camera.cpp
-  DirectionalLight.cpp
-  Game.cpp
-  GameObject.cpp
-  Light.cpp
-  Main.cpp
-  Mesh.cpp
-  PhongMaterial.cpp
-  PointLight.cpp
-  Renderer.cpp
-C:\Users\jespe\Documents\GitHub\ProjectDx11\ProjectDx11\ProjectDx11\Renderer.cpp(227,50): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
-C:\Users\jespe\Documents\GitHub\ProjectDx11\ProjectDx11\ProjectDx11\Renderer.cpp(228,51): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
-  Scene.cpp
-  Generating Code...
+﻿C:\Users\jespe\Documents\GitHub\ProjectDx11\ProjectDx11\ProjectDx11\PixelShader.hlsl(62,5): warning X4000: use of potentially uninitialized variable (ComputeShadow)
+  
+  compilation object save succeeded; see C:\Users\jespe\Documents\GitHub\ProjectDx11\ProjectDx11\ProjectDx11\PixelShader.cso
   ProjectDx11.vcxproj -> C:\Users\jespe\Documents\GitHub\ProjectDx11\ProjectDx11\x64\Debug\ProjectDx11.exe

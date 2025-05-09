@@ -31,7 +31,7 @@ private:
     ID3D11DepthStencilView* m_oldDSV = nullptr;
 public:
 
-	DirectionalLight(Renderer& renderer, float rotationX = -45.0f, float rotationY = 90.0f, float rotationZ = 0.0f, const DX::XMFLOAT4& color = DX::XMFLOAT4(0.1f, 0.1f, 0.5f, 1.0f), float intensity = 10.0f);
+	DirectionalLight(Renderer& renderer, float rotationX = -45.0f, float rotationY = 90.0f, float rotationZ = 0.0f, const DX::XMFLOAT4& color = DX::XMFLOAT4(0.1f, 0.1f, 0.5f, 1.0f), float intensity = 7.0f);
 	~DirectionalLight();
 
     void update(Renderer& renderer) override;

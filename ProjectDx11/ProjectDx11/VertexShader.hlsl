@@ -42,7 +42,7 @@ Output main(Input input)
     output.uv = input.uv; // Pass UV to the pixel shader
     output.cameraPosition = cameraPosition.xyz;
     
-    // Shadow sampling
+    // Shadow
     output.lightSpacePos = mul(worldposition, lightViewProj);
     
     return output;

@@ -62,7 +62,7 @@ public:
 	void endFrame();
 
 	// Shadow
-	void setShadowViewProj(DX::XMMATRIX lightViewMatrix, DX::XMMATRIX lightProjectionMatrix);
+	void bindLightViewBuffer(DX::XMMATRIX lightViewMatrix, DX::XMMATRIX lightProjectionMatrix);
 	void useShadowShaders();
 	void bindShadowMatrixForMainPass();
 	void createShadowSampler();
