@@ -279,13 +279,23 @@ void Renderer::createShadowSampler()
 	shadowSamplerDesc.MinLOD = 0;
 	shadowSamplerDesc.MaxLOD = D3D11_FLOAT32_MAX;
 
-	getDevice()->CreateSamplerState(&shadowSamplerDesc, &m_shadowSamplerState);
+	getDevice()->CreateSamplerState(&shadowSamplerDesc, &m_shadowSampler);
 	
 }
 
 void Renderer::restoreViewport()
 {
 	getDeviceContext()->RSSetViewports(1, &m_defaultViewport);
+}
+
+void Renderer::setShadowShaderResources()
+{
+	getDeviceContext()->PSSetShaderResources(1, 1, &m_shadowSRV);  // t1
+}
+
+void Renderer::setShadowSamplers()
+{
+	getDeviceContext()->PSSetSamplers(1, 1, &m_shadowSampler); // s1
 }
 
 void Renderer::useMainShaders()

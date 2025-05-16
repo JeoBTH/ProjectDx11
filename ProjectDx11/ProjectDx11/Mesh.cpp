@@ -4,7 +4,6 @@
 #include "stb-master/stb_image.h"
 #define TINYOBJLOADER_IMPLEMENTATION
 #include "tinyobjloader-release/tiny_obj_loader.h"
-#include "DirectionalLight.hpp"
 
 
 Mesh::Mesh(Renderer& renderer, const string& objPath, const string& texturePath)
@@ -90,7 +89,6 @@ void Mesh::loadFromOBJ(const std::string& path)
 	}
 }
 
-
 void Mesh::draw(Renderer& renderer)
 {
 	UINT stride = sizeof(Vertex);
@@ -109,11 +107,9 @@ void Mesh::draw(Renderer& renderer)
 	renderer.getDeviceContext()->PSSetShaderResources(0, 1, &m_textureView); // Bind the texture t0
 	renderer.getDeviceContext()->PSSetSamplers(0, 1, &m_samplerState);       // Bind the sampler s0
 
-	// Bind Shadow Sampler & SRV
-	ID3D11ShaderResourceView* shadowMapSRV = renderer.getShadowMapSRV();
-	renderer.getDeviceContext()->PSSetShaderResources(1, 1, &shadowMapSRV);  // t1
-	ID3D11SamplerState* shadowSampler = renderer.getShadowSampler();
-	renderer.getDeviceContext()->PSSetSamplers(1, 1, &shadowSampler); // s1
+	// Bind Shadow Sampler & SRV so we can sample from the shadow texture
+	renderer.setShadowShaderResources();									 // t1
+	renderer.setShadowSamplers();											 // s1
 
 	// Draw
 	renderer.getDeviceContext()->DrawIndexed(static_cast<UINT>(m_indices.size()), 0, 0); // 6: The number of indices in my index buffer.
@@ -166,7 +162,6 @@ void Mesh::loadTexture(Renderer& renderer, const string& texturePath)
 			}
 		}
 	}
-
 
 	//Create the texture
 	D3D11_TEXTURE2D_DESC textureDesc = {};

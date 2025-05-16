@@ -1,18 +1,4 @@
-﻿  AmbientLight.cpp
-  Application.cpp
-  Camera.cpp
-  DirectionalLight.cpp
-  Game.cpp
-  GameObject.cpp
-  Main.cpp
-  Mesh.cpp
-  PhongMaterial.cpp
-  PointLight.cpp
-  Renderer.cpp
-C:\Users\jespe\Documents\GitHub\ProjectDx11\ProjectDx11\ProjectDx11\Renderer.cpp(181,21): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
-C:\Users\jespe\Documents\GitHub\ProjectDx11\ProjectDx11\ProjectDx11\Renderer.cpp(182,22): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
-C:\Users\jespe\Documents\GitHub\ProjectDx11\ProjectDx11\ProjectDx11\Renderer.cpp(303,50): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
-C:\Users\jespe\Documents\GitHub\ProjectDx11\ProjectDx11\ProjectDx11\Renderer.cpp(304,51): warning C4244: '=': conversion from 'float' to 'UINT', possible loss of data
+﻿  Game.cpp
   Scene.cpp
   Generating Code...
   ProjectDx11.vcxproj -> C:\Users\jespe\Documents\GitHub\ProjectDx11\ProjectDx11\x64\Debug\ProjectDx11.exe

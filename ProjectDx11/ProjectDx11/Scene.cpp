@@ -4,6 +4,29 @@ Scene::Scene(Renderer& renderer, float cameraMovementSpeed)
 	:m_camera(renderer),
     moveSpeed(cameraMovementSpeed)
 {
+	GameObject* cube = new GameObject(renderer, "Cube.obj", "T_CubeTest_D.png");
+	cube->translate(0.0f, 0.5f, 0.0f);
+	addGameObject(cube);
+
+	GameObject* cube2 = new GameObject(renderer, "Cube.obj", "T_CubeTest_D.png");
+	cube2->translate(5.0f, 0.5f, 0.0f);
+	cube2->setRotateAlongY(0.1f);
+	addGameObject(cube2);
+
+	GameObject* landscape = new GameObject(renderer, "Landscape.obj", "T_BTH_D.png");
+	addGameObject(landscape);
+
+	Light* ambientLight = new AmbientLight(renderer);
+	addLight(ambientLight);
+
+	Light* pointLight = new PointLight(renderer);
+	addLight(pointLight);
+
+	Light* directionalLight = new DirectionalLight(renderer);
+	addLight(directionalLight);
+
+	PhongMaterial* phongMaterial = new PhongMaterial(renderer);
+	addMaterial(phongMaterial);
 }
 
 Scene::~Scene()
