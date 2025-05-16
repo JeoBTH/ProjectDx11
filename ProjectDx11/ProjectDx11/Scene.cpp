@@ -102,28 +102,25 @@ void Scene::update(Renderer& renderer)
 
 void Scene::draw(Renderer& renderer)
 {
-	ID3D11ShaderResourceView* shadowMapSRV = nullptr;
-
 	// Shadow Pass
 	for (auto* light : m_lights) 
 	{
 		if (auto* dirLight = dynamic_cast<DirectionalLight*>(light))
 		{
-			dirLight->renderBeginShadowMap(renderer);
+			renderer.renderBeginShadowMap(*dirLight);
 
 			for (auto* gameObjects : m_gameObjects)
 			{
 				gameObjects->drawShadows(renderer);
 			}
 
-			dirLight->renderEndShadowMap(renderer);
-			shadowMapSRV = dirLight->getShadowMapSRV();
+			renderer.renderEndShadowMap();
 		}
 	}
 
 	// Main Pass
 	for (auto* gameObjects : m_gameObjects)
 	{
-		gameObjects->draw(renderer, shadowMapSRV);
+		gameObjects->draw(renderer);
 	}
 }

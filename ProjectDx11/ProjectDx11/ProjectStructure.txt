@@ -3,19 +3,14 @@
 ├── / src
 │   ├── / Core
 │   │   ├── Application.h / .cpp        → Main loop and window handling
-│   │   ├── Renderer.h / .cpp			→ Initializes Direct3D and handles rendering
-│   │   ├── Shader.h / .cpp				→ Encapsulates shader loading and management
-│   │   ├── Texture.h / .cpp			→ Handles texture loading and binding
-│   │   ├── Mesh.h / .cpp			    → Encapsulates vertex / index buffers
+│   │   ├── Renderer.h / .cpp			→ Direct3D, handles rendering, constant buffers, matrices, Shaders, InputLayout
+│   │   ├── Mesh.h / .cpp			    → Vertex/index buffers & data, OBJ loading, own texture, 
 │   │   ├── Camera.h / .cpp             → Controls view / projection matrices
 │   │   ├── InputHandler.h / .cpp       → Handles keyboard and mouse input
-│   │   ├── Timer.h / .cpp              → Keeps track of frame time
-│   │   ├── Logger.h / .cpp             → Manages logging / debug output
 │   ├── / Game
 │   │   ├── Scene.h / .cpp              → Manages game objects in a scene
 │   │   ├── GameObject.h / .cpp         → Base class for objects in the scene
 │   │   ├── Player.h / .cpp             → Example subclass of GameObject
-│   │   ├── Enemy.h / .cpp              → Example subclass of GameObject
 │   │   ├── Game.h / .cpp               → Main game logic
 │   ├── / Shaders
 │   │   ├── VertexShader.hlsl			→ Basic vertex shader

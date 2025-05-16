@@ -1,5 +1,5 @@
 #include "PointLight.hpp"
-
+#include "Renderer.hpp"
 
 PointLight::PointLight(Renderer& renderer, const DX::XMFLOAT4& position, const DX::XMFLOAT4& color, float intensity, float range)
 {

@@ -1,7 +1,6 @@
 #pragma once
-#include "Renderer.hpp"
 #include "Light.hpp"
-
+class Renderer; // Forward declaration
 
 class PointLight : public Light
 {

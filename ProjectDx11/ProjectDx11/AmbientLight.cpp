@@ -1,4 +1,5 @@
 #include "AmbientLight.hpp"
+#include "Renderer.hpp"
 
 
 AmbientLight::AmbientLight(Renderer& renderer, const DX::XMFLOAT4& color)

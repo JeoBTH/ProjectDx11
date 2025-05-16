@@ -35,7 +35,7 @@ public:
 	void scale(float x = 1.0f, float y = 1.0f, float z = 1.0f);
 
 	void update(Renderer& renderer);
-	void draw(Renderer& renderer, ID3D11ShaderResourceView* shadowMapSRV = nullptr);
+	void draw(Renderer& renderer);
 	void drawShadows(Renderer& renderer);
 
 };

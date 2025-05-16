@@ -2,6 +2,7 @@
 #include "Window.hpp"
 #include <d3d11.h>
 #include <DirectXMath.h>
+#include "DirectionalLight.hpp"
 
 namespace DX = DirectX;
 
@@ -32,14 +33,21 @@ private:
 	void createDepthStencil();
 
 	//Shadow
+	ID3D11DepthStencilView* m_shadowDSV = nullptr;
+	ID3D11ShaderResourceView* m_shadowSRV = nullptr;
+	D3D11_VIEWPORT m_shadowViewport = {};
+
+	ID3D11RenderTargetView* m_oldRTV = nullptr;
+	ID3D11DepthStencilView* m_oldDSV = nullptr;
+
 	ID3D11VertexShader* m_shadowVertexShader = nullptr;
 	ID3D11InputLayout* m_shadowInputLayout = nullptr;
 	void createShadowShaders();
 
-	struct ShadowMatrixBuffer
+	struct LightViewProjBuffer
 	{
 		DX::XMMATRIX lightViewProj;
-	}m_LightViewBuffer;
+	}m_LightViewProjBuffer;
 
 	ID3D11Buffer* m_shadowMatrixBuffer = nullptr;
 	void createShadowBuffer();
@@ -58,16 +66,22 @@ public:
 	float getScreenHeight() const;
 
 	void beginFrame();
-	void setPipelineState();
+	void useMainShaders();
 	void endFrame();
 
 	// Shadow
-	void bindLightViewBuffer(DX::XMMATRIX lightViewMatrix, DX::XMMATRIX lightProjectionMatrix);
+	void initializeShadowMap();
+	void renderBeginShadowMap(DirectionalLight& light);
 	void useShadowShaders();
-	void bindShadowMatrixForMainPass();
-	void createShadowSampler();
-	ID3D11SamplerState* getShadowSampler();
+	void renderEndShadowMap();
 
+	void bindLightViewBuffer(DX::XMMATRIX lightViewMatrix, DX::XMMATRIX lightProjectionMatrix);
+
+	void createShadowSampler();
+	ID3D11SamplerState* getShadowSampler() const { return m_shadowSamplerState;};
+	ID3D11ShaderResourceView* getShadowMapSRV() const {return m_shadowSRV;};
+
+	void bindShadowMatrixForMainPass();
 	void restoreViewport();
 };
 

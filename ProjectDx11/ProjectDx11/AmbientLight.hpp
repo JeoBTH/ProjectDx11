@@ -1,6 +1,6 @@
 #pragma once
-#include "Renderer.hpp"
 #include "Light.hpp"
+class Renderer; // Forward declaration
 
 
 class AmbientLight : public Light

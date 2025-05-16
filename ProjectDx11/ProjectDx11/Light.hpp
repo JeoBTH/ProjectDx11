@@ -1,6 +1,8 @@
 #pragma once
-#include "Renderer.hpp"
+#include <d3d11.h>
 #include <DirectXMath.h>
+class Renderer; // Forward declaration
+
 
 namespace DX = DirectX;
 

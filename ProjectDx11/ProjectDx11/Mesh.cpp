@@ -91,10 +91,13 @@ void Mesh::loadFromOBJ(const std::string& path)
 }
 
 
-void Mesh::draw(Renderer& renderer, ID3D11ShaderResourceView* shadowMapSRV)
+void Mesh::draw(Renderer& renderer)
 {
+	UINT stride = sizeof(Vertex);
+	UINT offset = 0;
+
 	// Bind our Vertex Buffer 
-	renderer.getDeviceContext()->IASetVertexBuffers(0, 1, &m_vertexBuffer, &m_stride, &m_offset); // why pointers, because you can set two buffers, then you'd have an array of offet[] = [0,0}; which is automatically treated as a pointer when passed through. Single / Due support
+	renderer.getDeviceContext()->IASetVertexBuffers(0, 1, &m_vertexBuffer, &stride, &offset);
 	
 	// Bind our Index Buffer 
 	renderer.getDeviceContext()->IASetIndexBuffer(m_indexBuffer, DXGI_FORMAT_R32_UINT, 0);
@@ -107,12 +110,10 @@ void Mesh::draw(Renderer& renderer, ID3D11ShaderResourceView* shadowMapSRV)
 	renderer.getDeviceContext()->PSSetSamplers(0, 1, &m_samplerState);       // Bind the sampler s0
 
 	// Bind Shadow Sampler & SRV
-	if (shadowMapSRV!= nullptr)
-	{
-		renderer.getDeviceContext()->PSSetShaderResources(1, 1, &shadowMapSRV);  // t1
-		ID3D11SamplerState* shadowSampler = renderer.getShadowSampler();
-		renderer.getDeviceContext()->PSSetSamplers(1, 1, &shadowSampler); // s1
-	}
+	ID3D11ShaderResourceView* shadowMapSRV = renderer.getShadowMapSRV();
+	renderer.getDeviceContext()->PSSetShaderResources(1, 1, &shadowMapSRV);  // t1
+	ID3D11SamplerState* shadowSampler = renderer.getShadowSampler();
+	renderer.getDeviceContext()->PSSetSamplers(1, 1, &shadowSampler); // s1
 
 	// Draw
 	renderer.getDeviceContext()->DrawIndexed(static_cast<UINT>(m_indices.size()), 0, 0); // 6: The number of indices in my index buffer.
@@ -120,8 +121,11 @@ void Mesh::draw(Renderer& renderer, ID3D11ShaderResourceView* shadowMapSRV)
 
 void Mesh::drawShadows(Renderer& renderer)
 {
+	UINT stride = sizeof(Vertex);
+	UINT offset = 0;
+
 	// Bind Vertex Buffer
-	renderer.getDeviceContext()->IASetVertexBuffers(0, 1, &m_vertexBuffer, &m_stride, &m_offset);
+	renderer.getDeviceContext()->IASetVertexBuffers(0, 1, &m_vertexBuffer, &stride, &offset);
 
 	// Bind Index Buffer
 	renderer.getDeviceContext()->IASetIndexBuffer(m_indexBuffer, DXGI_FORMAT_R32_UINT, 0);

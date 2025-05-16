@@ -15,6 +15,7 @@ Renderer::Renderer(Window& window)
 	createShadowShaders();
 	createShadowBuffer();
 	createShadowSampler();
+	initializeShadowMap();
 }
 
 Renderer::~Renderer()
@@ -61,7 +62,7 @@ void Renderer::beginFrame()
 	m_deviceContext->ClearDepthStencilView(m_depthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0);
 
 
-	setPipelineState(); // Apply shaders & input layout before drawing
+	useMainShaders(); // Apply shaders & input layout before drawing
 }
 
 void Renderer::endFrame()
@@ -153,7 +154,7 @@ void Renderer::createShadowBuffer()
 	D3D11_BUFFER_DESC cbDesc{};
 	cbDesc.ByteWidth = sizeof(m_shadowMatrixBuffer);
 	cbDesc.Usage = D3D11_USAGE_DYNAMIC;
-	cbDesc.ByteWidth = sizeof(ShadowMatrixBuffer);
+	cbDesc.ByteWidth = sizeof(LightViewProjBuffer);
 	cbDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 	cbDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 
@@ -163,15 +164,78 @@ void Renderer::createShadowBuffer()
 void Renderer::bindLightViewBuffer(DX::XMMATRIX lightViewMatrix, DX::XMMATRIX lightProjectionMatrix)
 {
 	DX::XMMATRIX lightViewProjectionMatrix = lightViewMatrix * lightProjectionMatrix;
-	m_LightViewBuffer.lightViewProj = DX::XMMatrixTranspose(lightViewProjectionMatrix);
+	m_LightViewProjBuffer.lightViewProj = DX::XMMatrixTranspose(lightViewProjectionMatrix);
 
 	D3D11_MAPPED_SUBRESOURCE mappedResource;
 	getDeviceContext()->Map(m_shadowMatrixBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
 
-	memcpy(mappedResource.pData, &m_LightViewBuffer, sizeof(m_LightViewBuffer));
+	memcpy(mappedResource.pData, &m_LightViewProjBuffer, sizeof(m_LightViewProjBuffer));
 
 	getDeviceContext()->Unmap(m_shadowMatrixBuffer, 0);
 	getDeviceContext()->VSSetConstantBuffers(3, 1, &m_shadowMatrixBuffer); // register(b3) in ShadowVertexShader
+}
+
+void Renderer::initializeShadowMap()
+{
+	D3D11_TEXTURE2D_DESC shadowDesc = {};
+	shadowDesc.Width = 2048.0f; // Shadow map resolution
+	shadowDesc.Height = 2048.0f;
+	shadowDesc.MipLevels = 1;
+	shadowDesc.ArraySize = 1;
+	shadowDesc.Format = DXGI_FORMAT_R32_TYPELESS;
+	shadowDesc.SampleDesc.Count = 1;
+	shadowDesc.Usage = D3D11_USAGE_DEFAULT;
+	shadowDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL | D3D11_BIND_SHADER_RESOURCE;
+
+	ID3D11Texture2D* shadowTexture = nullptr;
+	getDevice()->CreateTexture2D(&shadowDesc, nullptr, &shadowTexture);
+
+	// Depth Stencil View
+	D3D11_DEPTH_STENCIL_VIEW_DESC dsvDesc = {};
+	dsvDesc.Format = DXGI_FORMAT_D32_FLOAT;
+	dsvDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+	dsvDesc.Texture2D.MipSlice = 0;
+
+	getDevice()->CreateDepthStencilView(shadowTexture, &dsvDesc, &m_shadowDSV);
+
+	// Shader Resource View
+	D3D11_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
+	srvDesc.Format = DXGI_FORMAT_R32_FLOAT;
+	srvDesc.ViewDimension = D3D11_SRV_DIMENSION_TEXTURE2D;
+	srvDesc.Texture2D.MostDetailedMip = 0;
+	srvDesc.Texture2D.MipLevels = 1;
+
+	getDevice()->CreateShaderResourceView(shadowTexture, &srvDesc, &m_shadowSRV);
+
+	shadowTexture->Release();
+}
+
+void Renderer::renderBeginShadowMap(DirectionalLight& light)
+{
+	// store main pass rtv and dsv
+	getDeviceContext()->OMGetRenderTargets(1, &m_oldRTV, &m_oldDSV);
+
+	// Set shadow map as depth target (no render target)
+	getDeviceContext()->OMSetRenderTargets(0, nullptr, m_shadowDSV);
+
+	// Clear the shadow map
+	getDeviceContext()->ClearDepthStencilView(m_shadowDSV, D3D11_CLEAR_DEPTH, 1.0f, 0);
+
+	// Set viewport to shadow map size
+	D3D11_VIEWPORT shadowViewport = {};
+	shadowViewport.TopLeftX = 0;
+	shadowViewport.TopLeftY = 0;
+	shadowViewport.Width = 2048.0f;
+	shadowViewport.Height = 2048.0f;
+	shadowViewport.MinDepth = 0.0f;
+	shadowViewport.MaxDepth = 1.0f;
+	getDeviceContext()->RSSetViewports(1, &shadowViewport);
+
+	// Set special shaders for shadow rendering
+	useShadowShaders();
+
+	// Bind light viewProj matrix to a constant buffer
+	bindLightViewBuffer(light.getViewMatrix(), light.getProjectionMatrix());
 }
 
 void Renderer::useShadowShaders()
@@ -179,6 +243,23 @@ void Renderer::useShadowShaders()
 	getDeviceContext()->IASetInputLayout(m_shadowInputLayout);
 	getDeviceContext()->VSSetShader(m_shadowVertexShader, nullptr, 0);
 	getDeviceContext()->PSSetShader(nullptr, nullptr, 0); // No pixel shader for depth-only rendering
+}
+
+void Renderer::renderEndShadowMap()
+{
+	// Restore render target & depth stencil
+	getDeviceContext()->OMSetRenderTargets(1, &m_oldRTV, m_oldDSV);
+
+	// Restore original viewport (optional if you're doing it manually)
+	restoreViewport();
+
+	// Restore the main shaders
+	useMainShaders();
+	bindShadowMatrixForMainPass();
+
+	// Release references
+	m_oldRTV->Release();
+	m_oldDSV->Release();
 }
 
 void Renderer::bindShadowMatrixForMainPass()
@@ -202,17 +283,12 @@ void Renderer::createShadowSampler()
 	
 }
 
-ID3D11SamplerState* Renderer::getShadowSampler()
-{
-	return m_shadowSamplerState;
-}
-
 void Renderer::restoreViewport()
 {
 	getDeviceContext()->RSSetViewports(1, &m_defaultViewport);
 }
 
-void Renderer::setPipelineState()
+void Renderer::useMainShaders()
 {
 	// Bind input assembler
 	getDeviceContext()->IASetInputLayout(m_inputLayout);
