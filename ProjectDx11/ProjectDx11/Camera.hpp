@@ -41,7 +41,7 @@ public:
 	void setPosition(float x, float y, float z);
 	DX::XMVECTOR getPosition() const;
 
-	void processMouseMovement(float deltaX, float deltaY, bool constrainPitch = true);
+	void mouseMovement(float deltaX, float deltaY, bool constrainPitch = true);
 
 	void update(Renderer& renderer);
 };

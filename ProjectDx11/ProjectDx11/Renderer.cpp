@@ -152,27 +152,27 @@ void Renderer::createShadowShaders()
 void Renderer::createShadowBuffer()
 {
 	D3D11_BUFFER_DESC cbDesc{};
-	cbDesc.ByteWidth = sizeof(m_shadowMatrixBuffer);
+	cbDesc.ByteWidth = sizeof(m_LightViewProjData);
 	cbDesc.Usage = D3D11_USAGE_DYNAMIC;
 	cbDesc.ByteWidth = sizeof(LightViewProjBuffer);
 	cbDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 	cbDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 
-	getDevice()->CreateBuffer(&cbDesc, nullptr, &m_shadowMatrixBuffer);
+	getDevice()->CreateBuffer(&cbDesc, nullptr, &m_LightViewProjBuffer);
 }
 
 void Renderer::bindLightViewBuffer(DX::XMMATRIX lightViewMatrix, DX::XMMATRIX lightProjectionMatrix)
 {
 	DX::XMMATRIX lightViewProjectionMatrix = lightViewMatrix * lightProjectionMatrix;
-	m_LightViewProjBuffer.lightViewProj = DX::XMMatrixTranspose(lightViewProjectionMatrix);
+	m_LightViewProjData.lightViewProj = DX::XMMatrixTranspose(lightViewProjectionMatrix);
 
 	D3D11_MAPPED_SUBRESOURCE mappedResource;
-	getDeviceContext()->Map(m_shadowMatrixBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
+	getDeviceContext()->Map(m_LightViewProjBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedResource);
 
-	memcpy(mappedResource.pData, &m_LightViewProjBuffer, sizeof(m_LightViewProjBuffer));
+	memcpy(mappedResource.pData, &m_LightViewProjData, sizeof(m_LightViewProjData));
 
-	getDeviceContext()->Unmap(m_shadowMatrixBuffer, 0);
-	getDeviceContext()->VSSetConstantBuffers(3, 1, &m_shadowMatrixBuffer); // register(b3) in ShadowVertexShader
+	getDeviceContext()->Unmap(m_LightViewProjBuffer, 0);
+	getDeviceContext()->VSSetConstantBuffers(3, 1, &m_LightViewProjBuffer); // register(b3) in ShadowVertexShader
 }
 
 void Renderer::initializeShadowMap()
@@ -264,7 +264,7 @@ void Renderer::renderEndShadowMap()
 
 void Renderer::bindShadowMatrixForMainPass()
 {
-	getDeviceContext()->VSSetConstantBuffers(5, 1, &m_shadowMatrixBuffer); // register(b5) in VertexShader
+	getDeviceContext()->VSSetConstantBuffers(5, 1, &m_LightViewProjBuffer); // register(b5) in VertexShader
 }
 
 void Renderer::createShadowSampler()

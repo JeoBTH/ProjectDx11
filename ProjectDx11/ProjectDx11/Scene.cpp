@@ -115,7 +115,7 @@ void Scene::update(Renderer& renderer)
 		float deltaX = inputHandler->GetMouseDeltaX();
 		float deltaY = inputHandler->GetMouseDeltaY();
 
-		m_camera.processMouseMovement(deltaX, -deltaY);
+		m_camera.mouseMovement(deltaX, -deltaY);
 	}
 
 	inputHandler->update();

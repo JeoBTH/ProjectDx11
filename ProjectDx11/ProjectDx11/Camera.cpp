@@ -60,9 +60,6 @@ void Camera::initializeViewMatrix()
 
 void Camera::update(Renderer& renderer)
 {
-
-	//cout << "pos: " << DX::XMVectorGetX(m_position) << ", " << DX::XMVectorGetY(m_position) << ", " << DX::XMVectorGetZ(m_position) << endl;
-
 	m_tb.cameraPosition = m_position;
 
 	initializeViewMatrix(); // Update viewMatrix
@@ -100,7 +97,7 @@ void Camera::createConstantBuffer(Renderer& renderer)
 	renderer.getDevice()->CreateBuffer(&cbDesc, &initData, &m_constantBuffer);
 }
 
-void Camera::processMouseMovement(float deltaX, float deltaY, bool constrainPitch)
+void Camera::mouseMovement(float deltaX, float deltaY, bool constrainPitch)
 {
 	yaw += deltaX * sensitivity;
 	pitch += deltaY * sensitivity;
